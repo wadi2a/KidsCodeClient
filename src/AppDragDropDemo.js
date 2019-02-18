@@ -39,6 +39,13 @@ export default class AppDragDropDemo extends Component {
           ]
     }
 
+    choix = {
+        tasks: [
+
+        ]
+    }
+
+
     onDragStart = (ev, id) => {
         console.log('dragstart:',id);
         ev.dataTransfer.setData("id", id);
@@ -50,9 +57,11 @@ export default class AppDragDropDemo extends Component {
 
     onDrop = (ev, cat) => {
        let id = ev.dataTransfer.getData("id");
-       
+
        let tasks = this.state.tasks.filter((task) => {
            if (task.name == id) {
+               if(task.category=="complete"){this.choix.tasks.pop(task);}
+               if(task.category=="wip"){this.choix.tasks.push(task);}
                task.category = cat;
            }
            return task;
@@ -71,14 +80,26 @@ export default class AppDragDropDemo extends Component {
             wip: [],
             complete: []
         }
-
+        let i = 0;
         this.state.tasks.forEach ((t) => {
-            tasks[t.category].push(
-                <div key={t.name} 
+            tasks["wip"].push(
+                <div key={i++}
                     onDragStart = {(e) => this.onDragStart(e, t.name)}
                     draggable
                     className="draggable"
                     style = {{backgroundImage: t.bgcolor}}
+                >
+                </div>
+            );
+        });
+        this.choix.tasks.forEach ((t) => {
+
+            tasks["complete"].push(
+                <div key={i++}
+                     onDragStart = {(e) => this.onDragStart(e, t.name)}
+                     draggable
+                     className="draggable"
+                     style = {{backgroundImage: t.bgcolor}}
                 >
                 </div>
             );
