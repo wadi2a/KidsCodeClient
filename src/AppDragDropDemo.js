@@ -6,8 +6,8 @@ import logo from './kart.png';
 import start from './start.png';
 import up from './up.png';
 import down from './down.png';
-import right from './left.png';
-import left from './right.png';
+import left from './left.png';
+import right from './right.png';
 
 
 
@@ -18,9 +18,15 @@ export default class AppDragDropDemo extends Component {
         this.choix.tasks.forEach ((t) => {
             if(t.dirXy=="start"){start=true}
             if(start==true) {
-                if (t.dirXy == "x") {
+                if (t.name == "Left") {
                     animation
-                        .to(this.box, 1, {x: t.pas})
+                        .to(this.box, 2, {x: t.pas})
+                }else if (t.name == "Bottom") {
+                    animation
+                        .to(this.box, 3, {y: t.pas})
+                }else if (t.name == "Right") {
+                    animation
+                        .to(this.box, 3, {x: t.pas})
                 }
             }
         });
@@ -42,11 +48,11 @@ export default class AppDragDropDemo extends Component {
 
     state = {
         tasks: [
-            {dirXy:"start",pas:"-400",name:"Start",category:"wip", bgcolor: `url(${start})`},
-            {dirXy:"x",pas:"400",name:"Right", category:"wip", bgcolor: `url(${right})`},
-            {dirXy:"x",pas:"400",name:"Left", category:"wip", bgcolor:`url(${left})`},
-            {dirXy:"x",pas:"400",name:"Top", category:"wip", bgcolor: `url(${up})`},
-            {dirXy:"x",pas:"400",name:"Bottom", category:"wip", bgcolor:`url(${down})`}
+            {dirXy:"start",pas:"0",name:"Start",category:"wip", bgcolor: `url(${start})`},
+            {dirXy:"x",pas:"320",name:"Right", category:"wip", bgcolor: `url(${right})`},
+            {dirXy:"x",pas:"-230",name:"Left", category:"wip", bgcolor:`url(${left})`},
+            {dirXy:"x",pas:"430",name:"Top", category:"wip", bgcolor: `url(${up})`},
+            {dirXy:"x",pas:"430",name:"Bottom", category:"wip", bgcolor:`url(${down})`}
         ]
     }
 
