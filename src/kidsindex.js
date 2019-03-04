@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
-import { Navbar, Nav, NavDropdown, Form, Button, FormControl } from 'react-bootstrap';
+import './assets/css/kidsIndex.css';
 import { TimelineLite } from 'gsap';
-import logo from './kart.png';
-import start from './start.png';
-import up from './up.png';
-import down from './down.png';
-import left from './left.png';
-import right from './right.png';
+import logo from './assets/images/kart.png';
+import start from './assets/images/start.png';
+import up from './assets/images/up.png';
+import down from './assets/images/down.png';
+import left from './assets/images/left.png';
+import right from './assets/images/right.png';
 
 
 
