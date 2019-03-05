@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
-import './assets/css/kidsIndex.css';
+import '../assets/css/kidsIndex.css';
 import { TimelineLite } from 'gsap';
-import logo from './assets/images/kart.png';
-import start from './assets/images/start.png';
-import up from './assets/images/up.png';
-import down from './assets/images/down.png';
-import left from './assets/images/left.png';
-import right from './assets/images/right.png';
+import logo from '../assets/images/kart.png';
+import start from '../assets/images/start.png';
+import up from '../assets/images/up.png';
+import down from '../assets/images/down.png';
+import left from '../assets/images/left.png';
+import right from '../assets/images/right.png';
+import NavAccueil from './BarreNavigation/barreNavAccueil';
 
 
 
 
 
-export default class kidsindex extends Component {
+
+
+
+
+
+
+export default class fenetreJeu extends Component {
 
 
     checkRouteOk = () => {
@@ -71,19 +78,6 @@ export default class kidsindex extends Component {
                 alert("Bravo vous avez complété le niveau");
             }
 
-        /* animation
-           .to(this.box, 1, { x: -115 })
-           .to(this.box, 1, { x: -230 })
-           .to(this.box, 3, {rotation:-90, scale:1})
-           .to(this.box, 1, { y: 110 })
-          .to(this.box, 1, { y: 220 })
-          .to(this.box, 1, { y: 320 })
-          .to(this.box, 1, { y: 430 })
-          .to(this.box, 1, { x: -120 })
-          .to(this.box, 1, { x: 0 })
-          .to(this.box, 1, { x: 120 })
-          .to(this.box, 1, { x: 220 })
-          .to(this.box, 1, { x: 320 })*/
     }
 
     state = {
@@ -177,18 +171,9 @@ export default class kidsindex extends Component {
                         <span className="task-header">Choix</span>
                         {tasks.complete}
                     </div>
-                    <nav class="navbar navbar-default">
-                        <div class="container-fluid">
-                            <div class="navbar-header">
-                                <a class="navbar-brand" href="#">KidsCode</a>
-                            </div>
-                            <ul class="nav navbar-nav">
-                                <li class="active"><a href="#">Home</a></li>
-                                <li><a href="#">Statistiques</a></li>
-                                <li><a href="#">Profil</a></li>
-                            </ul>
-                        </div>
-                    </nav>
+
+                    <NavAccueil/>
+
                     <div class="container">
                         <div class="cont">
                             <div class="wrapper">
@@ -223,6 +208,8 @@ export default class kidsindex extends Component {
         );
     }
 }
+
+
 
 const styles = {
     button: {
