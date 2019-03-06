@@ -95,7 +95,7 @@ export default class BarreDeChoix2 extends Component {
             <div className="droppable"
                  onDragOver={(e)=>this.onDragOver(e)}
                  onDrop={(e)=>{this.onDrop(e,"complete")}}>
-                <span className="task-header">Choix1</span>
+
                 {tasks.complete}
             </div>
 

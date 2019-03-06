@@ -113,20 +113,20 @@ export default class fenetreJeu extends Component {
             <div className="container-drag">
 
 
-                <BarreDeChoix className="wip2" nomDeTask="Ouadie" task={this.state.tasks}/>
-                <BarreDeChoix2 sendData={this.getDataChoix2.bind(this)} className="droppable2" nomDeTask="Ouadie" task={this.state.tasks}/>
 
+                <NavAccueil/>
 
-                    <NavAccueil/>
-                <div>
+                <div className="interface">
                     <div className="container">
+                        <BarreDeChoix  task={this.state.tasks}/>
+                        <BarreDeChoix2 sendData={this.getDataChoix2.bind(this)} className="droppable2" nomDeTask="Ouadie" task={this.state.tasks}/>
+
                         <div className="cont">
                             <div className="wrapper">
                                 <div className="box">
 
                                 </div>
-                                {/* <div class="box a"><img className="box" style={styles.box} ref={box => this.box = box} src={logo} alt="Logo" /></div> */}
-                                <div className="box b"></div>
+                                  <div className="box b"></div>
                                 <div className="box c"><img style={styles.box} ref={box => this.box = box}  src={logo} alt="Logo" /></div>
                                 <div onClick={this.animate} className="box start">START</div>
                             </div>

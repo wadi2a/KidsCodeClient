@@ -50,7 +50,7 @@ export default class BarreDeChoix extends Component {
         return (
 
             <div className="wip">
-                <span className="task-header">{this.props.nomDeTask}</span>
+
                {tasks.wip}
             </div>
 
