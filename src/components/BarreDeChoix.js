@@ -9,15 +9,17 @@ import createWithBsPrefix from "react-bootstrap/es/utils/createWithBsPrefix";
 
 export default class BarreDeChoix extends Component {
 
+    constructor(props) {
+        super(props);
 
+
+            this.state.tasks = props.task;
+
+    }
 
     state = {
         tasks: [
-            {dirXy:"start",pas:"0",name:"Start",category:"wip", bgcolor: `url(${start})`},
-            {dirXy:"x",pas:"320",name:"Right", category:"wip", bgcolor: `url(${right})`},
-            {dirXy:"x",pas:"-230",name:"Left", category:"wip", bgcolor:`url(${left})`},
-            {dirXy:"x",pas:"430",name:"Top", category:"wip", bgcolor: `url(${up})`},
-            {dirXy:"x",pas:"430",name:"Bottom", category:"wip", bgcolor:`url(${down})`}
+
         ]
     }
 
@@ -47,7 +49,7 @@ export default class BarreDeChoix extends Component {
         });
         return (
 
-            <div className="wip2">
+            <div className="wip">
                 <span className="task-header">{this.props.nomDeTask}</span>
                {tasks.wip}
             </div>

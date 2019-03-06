@@ -101,91 +101,21 @@ export default class fenetreJeu extends Component {
         ]
     }
 
-    choix = {
-        tasks: [
-
-        ]
-    }
 
 
-    onDragStart = (ev, id) => {
-        console.log('dragstart:',id);
-        ev.dataTransfer.setData("id", id);
-    }
 
 
-    onDragOver = (ev) => {
-        ev.preventDefault();
-    }
-
-    onDrop = (ev, cat) => {
-        let id = ev.dataTransfer.getData("id");
-
-        let tasks = this.state.tasks.filter((task) => {
-            if (task.name === id) {
-                if(task.category==="complete"){this.choix.tasks.pop(task);}
-                if(task.category==="wip"){this.choix.tasks.push(task);}
-                task.category = cat;
-            }
-            return task;
-        });
-
-        this.setState({
-            ...this.state,
-            tasks
-        });
-    }
 
     render() {
-
-        var tasks = {
-            wip: [],
-            complete: []
-        }
-        let i = 0;
-        this.state.tasks.forEach ((t) => {
-            tasks["wip"].push(
-                <div key={i++}
-                     onDragStart = {(e) => this.onDragStart(e, t.name)}
-                     draggable
-                     className="draggable"
-                     style = {{backgroundImage: t.bgcolor}}
-                >
-                </div>
-            );
-        });
-        this.choix.tasks.forEach ((t) => {
-
-            tasks["complete"].push(
-                <div key={i++}
-                     onDragStart = {(e) => this.onDragStart(e, t.name)}
-                     draggable
-                     className="draggable"
-                     style = {{backgroundImage: t.bgcolor}}
-                >
-                </div>
-            );
-        });
 
         return (
             
             <div className="container-drag">
-                <div className="wip"
-                     onDragOver={(e)=>this.onDragOver(e)}
-                     onDrop={(e)=>{this.onDrop(e, "wip")}}>
-                    <span className="task-header">Deplacements</span>
-                    {tasks.wip}
-                </div>
 
-                <BarreDeChoix className="wip2" nomDeTask="Ouadie" task={tasks}/>
-                <BarreDeChoix2 sendData={this.getDataChoix2.bind(this)} className="droppable2" nomDeTask="Ouadie" task={tasks}/>
 
-                    <div className="droppable"
-                         onDragOver={(e)=>this.onDragOver(e)}
-                         onDrop={(e)=>this.onDrop(e, "complete")}>
-                        <span className="task-header">Choix</span>
-                        {tasks.complete}
-                    </div>
+                <BarreDeChoix className="wip2" nomDeTask="Ouadie" task={this.state.tasks}/>
+                <BarreDeChoix2 sendData={this.getDataChoix2.bind(this)} className="droppable2" nomDeTask="Ouadie" task={this.state.tasks}/>
+
 
                     <NavAccueil/>
                 <div>

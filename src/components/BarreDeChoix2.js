@@ -9,7 +9,13 @@ import createWithBsPrefix from "react-bootstrap/es/utils/createWithBsPrefix";
 
 export default class BarreDeChoix2 extends Component {
 
+    constructor(props) {
+        super(props);
 
+
+        this.state.choix = props.task;
+
+    }
     sendDataParent(val){
         this.props.sendData(val);
     }
@@ -18,11 +24,7 @@ export default class BarreDeChoix2 extends Component {
 
         ],
         choix:[
-            {dirXy:"start",pas:"0",name:"Start",category:"complete", bgcolor: `url(${start})`},
-            {dirXy:"x",pas:"320",name:"Right", category:"complete", bgcolor: `url(${right})`},
-            {dirXy:"x",pas:"-230",name:"Left", category:"complete", bgcolor:`url(${left})`},
-            {dirXy:"x",pas:"430",name:"Top", category:"complete", bgcolor: `url(${up})`},
-            {dirXy:"x",pas:"430",name:"Bottom", category:"complete", bgcolor:`url(${down})`}
+
         ]
     }
 
@@ -90,7 +92,7 @@ export default class BarreDeChoix2 extends Component {
         this.sendDataParent(this.state.tasks);
         return (
 
-            <div className="droppable2"
+            <div className="droppable"
                  onDragOver={(e)=>this.onDragOver(e)}
                  onDrop={(e)=>{this.onDrop(e,"complete")}}>
                 <span className="task-header">Choix1</span>
