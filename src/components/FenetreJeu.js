@@ -20,14 +20,25 @@ import BarreDeChoix2 from './BarreDeChoix2';
 
 
 export default class fenetreJeu extends Component {
+    choix2 = {
+        tasks: [
+
+        ]
+    }
+    getDataChoix2 = (val)=>{
+        // do not forget to bind getData in constructor
 
 
+        this.choix2.tasks = val;
+        console.log('getDataChoix2:',this.choix2.tasks);
+        return val;
+    }
     checkRouteOk = () => {
         const solution = ["Start", "Left", "Bottom", "Right"];
         var incr=0;
         var res = 0;
         
-        this.choix.tasks.forEach((t) => {
+        this.choix2.tasks.forEach((t) => {
 
             if(t.name !== solution[incr] && res===0){
                 res = incr;
@@ -46,7 +57,7 @@ export default class fenetreJeu extends Component {
         var incr = 0;
         var verif = this.checkRouteOk();
         var token = 0;
-            this.choix.tasks.forEach ((t) => {
+            this.choix2.tasks.forEach ((t) => {
 
 
                 if(verif!==incr || incr===0){
@@ -167,7 +178,7 @@ export default class fenetreJeu extends Component {
                 </div>
 
                 <BarreDeChoix className="wip2" nomDeTask="Ouadie" task={tasks}/>
-                <BarreDeChoix2 className="droppable2" nomDeTask="Ouadie" task={tasks}/>
+                <BarreDeChoix2 sendData={this.getDataChoix2.bind(this)} className="droppable2" nomDeTask="Ouadie" task={tasks}/>
 
                     <div className="droppable"
                          onDragOver={(e)=>this.onDragOver(e)}

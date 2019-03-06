@@ -10,7 +10,9 @@ import createWithBsPrefix from "react-bootstrap/es/utils/createWithBsPrefix";
 export default class BarreDeChoix2 extends Component {
 
 
-
+    sendDataParent(val){
+        this.props.sendData(val);
+    }
     state = {
         tasks: [
 
@@ -67,6 +69,7 @@ export default class BarreDeChoix2 extends Component {
 
 
     render() {
+
         let tasks = {
             complete: [],
 
@@ -84,6 +87,7 @@ export default class BarreDeChoix2 extends Component {
                 </div>
             );
         });
+        this.sendDataParent(this.state.tasks);
         return (
 
             <div className="droppable2"
