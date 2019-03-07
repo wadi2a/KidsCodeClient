@@ -25,13 +25,11 @@ export default class fenetreJeu extends Component {
 
         ]
     }
+
     getDataChoix2 = (val)=>{
-        // do not forget to bind getData in constructor
-
-
         this.choix2.tasks = val;
-        console.log('getDataChoix2:',this.choix2.tasks);
-        return val;
+
+         return val;
     }
 
 
@@ -49,8 +47,6 @@ export default class fenetreJeu extends Component {
             {dirXy:"x",pas:"430",name:"Bottom", category:"wip", bgcolor:`url(${down})`}
         ]
     }
-
-
 
 
 
