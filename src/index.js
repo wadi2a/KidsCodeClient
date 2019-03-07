@@ -9,6 +9,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 
 
-ReactDOM.render(<FenetreJeu />, document.getElementById('root'));
+ReactDOM.render(<FenetreJeu/>, document.getElementById('root'));
 
 

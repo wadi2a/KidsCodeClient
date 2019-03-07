@@ -1,11 +1,6 @@
 
 import React, { Component } from 'react';
-import start from "../assets/images/start.png";
-import right from "../assets/images/right.png";
-import left from "../assets/images/left.png";
-import up from "../assets/images/up.png";
-import down from "../assets/images/down.png";
-import createWithBsPrefix from "react-bootstrap/es/utils/createWithBsPrefix";
+
 
 export default class BarreDeChoix extends Component {
 
