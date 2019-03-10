@@ -10,7 +10,7 @@ import right from '../assets/images/right.png';
 import NavAccueil from './BarreNavigation/barreNavAccueil';
 import BarreDeChoix from './BarreDeChoix';
 import BarreDeChoix2 from './BarreDeChoix2';
-import Voiture from './Voiture';
+import Voiture from '../features/Voiture';
 
 
 
@@ -26,6 +26,8 @@ export default class fenetreJeu extends Component {
         ]
     }
 
+
+
     getDataChoix2 = (val)=>{
         this.choix2.tasks = val;
 
@@ -37,7 +39,10 @@ export default class fenetreJeu extends Component {
         animation
            .to(this.box, 2, {x:300})
     }
-
+    deplacement = ()=>{
+        this.setState({choix : this.choix2.tasks
+        });
+    }
     state = {
         tasks: [
             {dirXy:"start",pas:"0",name:"Start",category:"wip", bgcolor: `url(${start})`},
@@ -45,6 +50,9 @@ export default class fenetreJeu extends Component {
             {dirXy:"x",pas:"-230",name:"Left", category:"wip", bgcolor:`url(${left})`},
             {dirXy:"x",pas:"430",name:"Top", category:"wip", bgcolor: `url(${up})`},
             {dirXy:"x",pas:"430",name:"Bottom", category:"wip", bgcolor:`url(${down})`}
+        ],
+        choix:[
+
         ]
     }
 
@@ -63,12 +71,14 @@ export default class fenetreJeu extends Component {
 
                 <div className="interface">
                     <div className="container">
-                        <Voiture xDep={100} tasksChoisie={this.choix2.tasks} solution ={this.choix2.tasks}/>
+                        <Voiture/>
+
                         <BarreDeChoix  task={this.state.tasks}/>
                         <BarreDeChoix2 sendData={this.getDataChoix2.bind(this)} className="droppable2" nomDeTask="Ouadie" task={this.state.tasks}/>
 
                         <div className="cont">
-
+                            <button onClick={this.deplacement.bind(this)} className="btn btn-primary btn-lg"><span
+                                className="glyphicon glyphicon-user"> Valider votre choix</span></button>
                             <div className="wrapper">
 
                                 <div className="box">

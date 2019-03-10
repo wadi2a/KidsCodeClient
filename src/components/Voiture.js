@@ -22,12 +22,12 @@ export default class Voiture extends Component {
 
     deplacement = () => { var animation = new TimelineLite()
 
-
-        console.log("opa",BarreDeChoix2.notreChoix())
+        this.deplacementVoiture.tasksChoisie = this.props.tasksChoisie;
+        styles.box.width;
         this.deplacementVoiture.tasksChoisie.forEach((t)=>{
             if(t.dirXy="x") {
                 animation
-                    .to(this.box, 2, {x:300})
+                    .to(this.box, 2, {x:styles.button.width})
 
             }
         })
@@ -44,8 +44,18 @@ export default class Voiture extends Component {
     }
 }
 
-const styles = {
 
+const styles = {
+    button: {
+        width: 2000,
+        height: 45,
+        border: 'none',
+        outline: 'none',
+    },
+    container: {
+        padding: 100,
+    },
     box: {
+        width: 100,
     }
 }
