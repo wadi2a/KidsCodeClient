@@ -1,5 +1,5 @@
 import store from '../../config/store'
-import {SPRITE_SIZE} from '../../config/constants'
+import {MAP_HEIGHT, MAP_WIDTH, SPRITE_SIZE} from '../../config/constants'
 
 
 export default function handleDeplacement(voiture) {
@@ -19,12 +19,18 @@ export default function handleDeplacement(voiture) {
         }
         
     }
+    function observeBoundaries(oldPos,newPos) {
+
+        return (newPos[0]>=0 && newPos[0]<=MAP_WIDTH-SPRITE_SIZE) &&
+               (newPos[1]>=0 && newPos[1]<=MAP_HEIGHT-SPRITE_SIZE)
+                ? newPos : oldPos
+    }
     function dispatchMove(direction) {
-        
+        const oldPos = store.getState().voiture.position
         store.dispatch({
             type : 'MOVE_VOITURE',
             payload:{
-                position : getNewPosition(direction)
+                position : observeBoundaries(oldPos,getNewPosition(direction))
             }
         })
     }
