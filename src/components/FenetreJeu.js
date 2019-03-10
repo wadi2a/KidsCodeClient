@@ -10,7 +10,7 @@ import right from '../assets/images/right.png';
 import NavAccueil from './BarreNavigation/barreNavAccueil';
 import BarreDeChoix from './BarreDeChoix';
 import BarreDeChoix2 from './BarreDeChoix2';
-import Voiture from '../features/Voiture';
+import World from '../features/world';
 
 
 
@@ -71,8 +71,7 @@ export default class fenetreJeu extends Component {
 
                 <div className="interface">
                     <div className="container">
-                        <Voiture/>
-
+                       <World/>
                         <BarreDeChoix  task={this.state.tasks}/>
                         <BarreDeChoix2 sendData={this.getDataChoix2.bind(this)} className="droppable2" nomDeTask="Ouadie" task={this.state.tasks}/>
 

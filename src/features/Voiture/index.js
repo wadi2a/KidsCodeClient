@@ -1,11 +1,13 @@
 import React from 'react'
 import walkSprite from '../../assets/images/player_walk.png'
 import {connect} from 'react-redux'
+import handleDeplacement from './deplacement'
+
 function Voiture(props) {
     return(
         <div
         style = {{
-        position : 'relative',
+        position : 'absolute',
         top:props.position[1],
         left:props.position[0],
         backgroundImage:`url('${walkSprite}')`,
@@ -24,5 +26,5 @@ function  mapStateToProps(state) {
 
     }
 }
-export default connect(mapStateToProps)(Voiture)
+export default connect(mapStateToProps)(handleDeplacement(Voiture))
 

@@ -4,6 +4,11 @@ const initialState = {
 
 const voitureReducer = (state = initialState,action)=>{
     switch (action.type) {
+        case 'MOVE_VOITURE' :
+            return {
+                ...action.payload
+
+            }
         default :
             return state
 
