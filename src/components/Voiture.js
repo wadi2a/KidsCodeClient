@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 import logo from "../assets/images/kart.png";
 import {TimelineLite} from "gsap";
-
+import BarreDeChoix2 from './BarreDeChoix2';
 
 export default class Voiture extends Component {
-    state = {
+    deplacementVoiture = {
         tasksChoisie: [
 
         ],
@@ -16,13 +16,22 @@ export default class Voiture extends Component {
 
     constructor(props) {
         super(props);
-        this.state.tasksChoisie = props.tasksChoisie;
+
     }
 
 
-    deplacement = (xDep) => { var animation = new TimelineLite()
-        animation
-            .to(this.box, 2, {x:100})
+    deplacement = () => { var animation = new TimelineLite()
+
+        this.deplacementVoiture.tasksChoisie = this.props.tasksChoisie;
+        styles.box.width;
+        this.deplacementVoiture.tasksChoisie.forEach((t)=>{
+            if(t.dirXy="x") {
+                animation
+                    .to(this.box, 2, {x:styles.button.width})
+
+            }
+        })
+
     }
 
     render() {
@@ -35,8 +44,18 @@ export default class Voiture extends Component {
     }
 }
 
-const styles = {
 
+const styles = {
+    button: {
+        width: 2000,
+        height: 45,
+        border: 'none',
+        outline: 'none',
+    },
+    container: {
+        padding: 100,
+    },
     box: {
+        width: 100,
     }
 }

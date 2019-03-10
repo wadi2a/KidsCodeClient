@@ -1,13 +1,9 @@
 
 import React, { Component } from 'react';
-import start from "../assets/images/start.png";
-import right from "../assets/images/right.png";
-import left from "../assets/images/left.png";
-import up from "../assets/images/up.png";
-import down from "../assets/images/down.png";
-import createWithBsPrefix from "react-bootstrap/es/utils/createWithBsPrefix";
 
+import Voiture from './Voiture';
 export default class BarreDeChoix2 extends Component {
+
 
     constructor(props) {
         super(props);
@@ -16,9 +12,15 @@ export default class BarreDeChoix2 extends Component {
         this.state.choix = props.task;
 
     }
-    sendDataParent(val){
+     sendDataParent(val){
         this.props.sendData(val);
+
     }
+
+   notreChoix (){
+        return this.state;
+    };
+
     state = {
         tasks: [
 
@@ -90,6 +92,7 @@ export default class BarreDeChoix2 extends Component {
             );
         });
         this.sendDataParent(this.state.tasks);
+
         return (
 
             <div className="droppable"
