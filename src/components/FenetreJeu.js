@@ -10,7 +10,7 @@ import right from '../assets/images/right.png';
 import NavAccueil from './BarreNavigation/barreNavAccueil';
 import BarreDeChoix from './BarreDeChoix';
 import BarreDeChoix2 from './BarreDeChoix2';
-
+import Voiture from './Voiture';
 
 
 
@@ -33,62 +33,11 @@ export default class fenetreJeu extends Component {
         console.log('getDataChoix2:',this.choix2.tasks);
         return val;
     }
-    checkRouteOk = () => {
-        const solution = ["Start", "Left", "Bottom", "Right"];
-        var incr=0;
-        var res = 0;
-        
-        this.choix2.tasks.forEach((t) => {
 
-            if(t.name !== solution[incr] && res===0){
-                res = incr;
-            }
-
-            incr++;
-        });
-
-        return res;
-        
-    }
 
     animate = () => { var animation = new TimelineLite()
-        let start = false;
-
-        var incr = 0;
-        var verif = this.checkRouteOk();
-        var token = 0;
-            this.choix2.tasks.forEach ((t) => {
-
-
-                if(verif!==incr || incr===0){
-                    if(t.dirXy==="start"){start=true}
-                    if(start===true) {
-                        if (t.name === "Left") {
-                            animation
-                                .to(this.box, 2, {x: t.pas})
-                        }else if (t.name === "Bottom") {
-                            animation
-                                .to(this.box, 3, {y: t.pas})
-                        }else if (t.name === "Right") {
-                            animation
-                                .to(this.box, 3, {x: t.pas})
-                        }
-                    }
-                }else{
-                    token = 1;
-                }
-
-                incr++;
-            });
-
-
-            if(token===1 || incr!==4){
-                alert("Les déplacements proposées ne permettent pas de réaliser le parcour");
-                window.location.reload();
-            }else{
-                alert("Bravo vous avez complété le niveau");
-            }
-
+        animation
+           .to(this.box, 2, {x:300})
     }
 
     state = {
@@ -118,17 +67,21 @@ export default class fenetreJeu extends Component {
 
                 <div className="interface">
                     <div className="container">
+                        <Voiture xDep={100} tasksChoisie={this.choix2.tasks} solution ={this.choix2.tasks}/>
                         <BarreDeChoix  task={this.state.tasks}/>
                         <BarreDeChoix2 sendData={this.getDataChoix2.bind(this)} className="droppable2" nomDeTask="Ouadie" task={this.state.tasks}/>
 
                         <div className="cont">
+
                             <div className="wrapper">
+
                                 <div className="box">
 
                                 </div>
                                   <div className="box b"></div>
-                                <div className="box c"><img style={styles.box} ref={box => this.box = box}  src={logo} alt="Logo" /></div>
-                                <div onClick={this.animate} className="box start">START</div>
+                                <div className="box c"><img onClick={this.animate} style={styles.box} ref={box => this.box = box}  src={logo} alt="Logo" /></div>
+
+                                <div  className="box start">START</div>
                             </div>
                             <div className="wrapperbis">
                                 <div className="box z"></div>
