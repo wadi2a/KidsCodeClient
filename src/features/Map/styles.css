@@ -1,0 +1,20 @@
+.tile{
+    display:inline-flex ;
+    background-color: green;
+}
+.route{
+    background-color: slategray;
+}
+.terre{
+    background-color: green;
+}
+.rock {
+    background-image : url('../../assets/images/rock.png')
+}
+
+.tree {
+    background-image : url('../../assets/images/tree.png')
+}
+.row{
+    margin-top: -5px;
+}

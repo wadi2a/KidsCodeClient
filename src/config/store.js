@@ -1,7 +1,10 @@
 import {createStore,combineReducers} from 'redux'
 import voitureReducer from '../features/Voiture/reducer'
+import mapReducer from '../features/Map/reducer'
+
 const rootReducer= combineReducers({
     voiture : voitureReducer,
+    map : mapReducer,
 })
 
 const store = createStore(
