@@ -62,7 +62,7 @@ export default class fenetreJeu extends Component {
     render() {
 
         return (
-            
+
             <div className="container-drag">
 
 
