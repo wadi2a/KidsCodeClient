@@ -5,6 +5,7 @@ import mapReducer from '../features/Map/reducer'
 const rootReducer= combineReducers({
     voiture : voitureReducer,
     map : mapReducer,
+
 })
 
 const store = createStore(

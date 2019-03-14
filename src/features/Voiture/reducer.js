@@ -1,8 +1,8 @@
 const initialState = {
-    position : [0,0],
-    spriteLocation:'0px 0px',
-    direction :'EAST',
-    depIndex :0,
+    position: [1120,160],
+    spriteLocation: '0px 160px',
+    direction: 'WEST',
+    depIndex: 0,
 }
 
 const voitureReducer = (state = initialState,action)=>{

@@ -5,6 +5,7 @@ import {MAP_HEIGHT, MAP_WIDTH, SPRITE_SIZE} from '../../config/constants'
 export default function handleDeplacement(voiture) {
 
     function getSpriteLocation(direction,depIndex) {
+
         switch(direction) {
             case 'SOUTH':
                 return `${SPRITE_SIZE*1}px ${SPRITE_SIZE*0}px`
@@ -32,17 +33,19 @@ export default function handleDeplacement(voiture) {
         
     }
     function observeBoundaries(oldPos,newPos) {
-
+        console.log(newPos[1],newPos[0])
         return (newPos[0]>=0 && newPos[0]<=MAP_WIDTH-SPRITE_SIZE) &&
                (newPos[1]>=0 && newPos[1]<=MAP_HEIGHT-SPRITE_SIZE)
 
     }
     function observeImpass(oldPos,newPos) {
         const tiles = store.getState().map.tiles
+
         const y = newPos[1]/SPRITE_SIZE
         const x = newPos[0]/SPRITE_SIZE
         const nextTiles = tiles[y][x]
-        return nextTiles < 5
+
+        return nextTiles === 7
 
     }
     function attemptMove(direction) {
@@ -54,19 +57,26 @@ export default function handleDeplacement(voiture) {
     }
     function dispatchMove(direction,newPos) {
         const depIndex =getDepIndex()
+
         store.dispatch({
             type : 'MOVE_VOITURE',
             payload:{
                 position : newPos,
                 direction :direction,
-                depIndex :newPos ,
+                depIndex,
                 spriteLocation : getSpriteLocation(direction,depIndex),
             }
         })
     }
     function getDepIndex() {
         const depIndex = store.getState().voiture.depIndex
-        return (depIndex >= 7 ? 0 : depIndex + 1)
+
+        if(depIndex >= 5){
+            return 0
+        }else {
+            return depIndex+1
+        }
+
 
     }
     function handleKeyDown(e){

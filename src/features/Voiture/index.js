@@ -12,8 +12,8 @@ function Voiture(props) {
         left:props.position[0],
         backgroundImage:`url('${walkSprite}')`,
         backgroundPosition: props.spriteLocation,
-        width : '40px',
-        height :'40px',
+        width : '80px',
+        height :'80px',
         }}
         />
     )
@@ -22,6 +22,7 @@ function Voiture(props) {
 function  mapStateToProps(state) {
     return{
         ...state.voiture,
+
 
 
     }
