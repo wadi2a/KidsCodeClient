@@ -5,8 +5,8 @@ import handleDeplacement from './deplacement'
 
 function Voiture(props) {
     return(
-        <div
-        style = {{
+        <div className="Voit"
+             style = {{
         position : 'absolute',
         top:props.position[1],
         left:props.position[0],
@@ -27,5 +27,14 @@ function  mapStateToProps(state) {
 
     }
 }
+
+
+const styles = {
+
+    box: {
+
+    },
+}
+
 export default connect(mapStateToProps)(handleDeplacement(Voiture))
 

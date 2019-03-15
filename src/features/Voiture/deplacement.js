@@ -1,5 +1,6 @@
 import store from '../../config/store'
 import {MAP_HEIGHT, MAP_WIDTH, SPRITE_SIZE} from '../../config/constants'
+import {TimelineLite} from "gsap";
 
 
 export default function handleDeplacement(voiture) {
@@ -33,7 +34,7 @@ export default function handleDeplacement(voiture) {
         
     }
     function observeBoundaries(oldPos,newPos) {
-        console.log(newPos[1],newPos[0])
+
         return (newPos[0]>=0 && newPos[0]<=MAP_WIDTH-SPRITE_SIZE) &&
                (newPos[1]>=0 && newPos[1]<=MAP_HEIGHT-SPRITE_SIZE)
 
@@ -52,11 +53,17 @@ export default function handleDeplacement(voiture) {
         const oldPos = store.getState().voiture.position
         const newPos = getNewPosition(oldPos,direction)
         if(observeBoundaries(oldPos,newPos)&& observeImpass(oldPos,newPos) ){
-            dispatchMove(direction,newPos)
+            dispatchMove(direction,newPos,oldPos)
         }
     }
-    function dispatchMove(direction,newPos) {
+
+
+
+    function dispatchMove(direction,newPos,oldPos) {
         const depIndex =getDepIndex()
+
+
+
 
         store.dispatch({
             type : 'MOVE_VOITURE',
@@ -67,6 +74,7 @@ export default function handleDeplacement(voiture) {
                 spriteLocation : getSpriteLocation(direction,depIndex),
             }
         })
+
     }
     function getDepIndex() {
         const depIndex = store.getState().voiture.depIndex
