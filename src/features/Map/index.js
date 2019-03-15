@@ -49,7 +49,6 @@ function Map(props) {
             left:'0px',
             width : '1200px',
             height: '560px',
-            border: '4px solid white',
             margin: '10px auto'
         }}>
             {

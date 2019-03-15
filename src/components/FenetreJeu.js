@@ -71,37 +71,12 @@ export default class fenetreJeu extends Component {
 
                 <div className="interface">
                     <div className="container">
-                       <World/>
                         <BarreDeChoix  task={this.state.tasks}/>
                         <BarreDeChoix2 sendData={this.getDataChoix2.bind(this)} className="droppable2" nomDeTask="Ouadie" task={this.state.tasks}/>
 
-                        <div className="cont">
-                            <button onClick={this.deplacement.bind(this)} className="btn btn-primary btn-lg"><span
-                                className="glyphicon glyphicon-user"> Valider votre choix</span></button>
-                            <div className="wrapper">
+                        <World/>
 
-                                <div className="box">
 
-                                </div>
-                                  <div className="box b"></div>
-                                <div className="box c"><img onClick={this.animate} style={styles.box} ref={box => this.box = box}  src={logo} alt="Logo" /></div>
-
-                                <div  className="box start">START</div>
-                            </div>
-                            <div className="wrapperbis">
-                                <div className="box z"></div>
-                                <div className="box e"></div>
-                                <div className="box z"></div>
-                            </div>
-                            <div className="wrapper">
-                                <div className="box a"></div>
-                                <div className="box b"></div>
-                                <div className="box c"></div>
-                                <div className="box a"></div>
-                                <div className="box a"></div>
-                                <div className="box end">END</div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

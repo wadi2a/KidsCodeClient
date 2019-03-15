@@ -1,12 +1,12 @@
 .tile{
     display:inline-flex ;
-    background-color: green;
+
 }
 .route{
     background-color: slategray;
 }
 .terre{
-    background-color: green;
+    background-image : url('../../assets/images/terre.png')
 }
 .rock {
     background-image : url('../../assets/images/rock.png')
