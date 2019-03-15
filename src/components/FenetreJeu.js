@@ -74,7 +74,7 @@ export default class fenetreJeu extends Component {
                         <BarreDeChoix  task={this.state.tasks}/>
                         <BarreDeChoix2 sendData={this.getDataChoix2.bind(this)} className="droppable2" nomDeTask="Ouadie" task={this.state.tasks}/>
 
-                        <World/>
+                        <World sendData={this.getDataChoix2.bind(this)} />
 
 
                     </div>

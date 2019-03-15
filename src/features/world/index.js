@@ -1,6 +1,7 @@
 import React from 'react'
 import Map from '../Map'
 import Voiture from '../Voiture'
+import Barre1 from '../BarreChoix'
 import {tiles} from '../../data/maps/1'
 import store from '../../config/store'
 function World(props) {
@@ -15,7 +16,7 @@ function World(props) {
                 height: '560px',
                 margin: '20px auto',
             }}
-        >
+        ><Barre1 sendData={props.sendData}/>
         <Map/>
         <Voiture/>
         </div>
