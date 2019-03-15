@@ -24,20 +24,7 @@ function BarreChoix(props) {
         console.log('dro:',store.getState().barreChoix.tasksChoisie);
     }
 
-    function onClick  (ev, tas)  {
-        console.log('dragstart:',tas)
 
-
-        let blocks = this.state.tasks.filter((task) => {
-            if (task.name !== tas) {
-
-                return task;
-            }
-
-
-        });
-        dispatchCase(blocks)
-    }
 
     function  onDragOver  (ev) {
 
@@ -60,31 +47,13 @@ function BarreChoix(props) {
 
             }
 
-
+            BarreChoix(props);
         });
 
 
     }
 
-function remplissage() {
 
-    let tasks = []
-
-    store.getState().barreChoix.tasksChoisie.forEach((t) => {
-        tasks.push(
-            <div key={t.name}
-
-                 onClick={(e) => onClick(e, t.name)}
-                 draggable
-                 className="draggable"
-                 style={{backgroundImage: t.bgcolor}}
-            >
-            </div>
-        );
-    });
-    console.log("remplissage",tasks);
-    return tasks
-}
     return (
 
         <div className="droppable"
@@ -103,4 +72,48 @@ function mapStateToProps(state) {
         tasksChoisie :state.tasksChoisie,
     }
 }
-export default connect(mapStateToProps)(BarreChoix)
+function remplissage(Barre) {
+
+    let tasks = []
+
+    store.getState().barreChoix.tasksChoisie.forEach((t) => {
+        tasks.push(
+            <div key={t.name}
+
+                 onClick={(e) => onClick(e, t.name)}
+                 draggable
+                 className="draggable"
+                 style={{backgroundImage: t.bgcolor}}
+            >
+            </div>
+        );
+    });
+    console.log("remplissage");
+    return tasks
+}
+function onClick  (ev, tas)  {
+    console.log('dragstart:',tas)
+
+
+    let blocks = this.state.tasks.filter((task) => {
+        if (task.name !== tas) {
+
+            return task;
+        }
+
+
+    });
+    dispatchCase(blocks)
+}
+function dispatchCase(block) {
+
+    store.dispatch({
+        type : 'DRAGCHOIX',
+        payload:{
+            tasksChoisie : store.getState().barreChoix.tasksChoisie.concat(block),
+
+        }
+    })
+    console.log('dro:',store.getState().barreChoix.tasksChoisie);
+}
+export default connect(mapStateToProps)(remplissage(BarreChoix))
