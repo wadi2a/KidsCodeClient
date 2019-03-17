@@ -1,7 +1,8 @@
 
 import React, { Component } from 'react';
-
+import {dataBlock} from '../data/blocks'
 import Voiture from './Voiture';
+import store from "../config/store";
 export default class BarreDeChoix2 extends Component {
 
 
@@ -9,7 +10,7 @@ export default class BarreDeChoix2 extends Component {
         super(props);
 
 
-        this.state.choix = props.task;
+        this.state.choix = dataBlock;
 
     }
      sendDataParent(val){
@@ -69,6 +70,17 @@ export default class BarreDeChoix2 extends Component {
         this.setState({tasks : this.state.tasks.concat(blocks)
 
         });
+        store.dispatch({
+            type : 'MOVE_VOITURE',
+            payload:{
+                position : store.getState().voiture.position,
+                direction :store.getState().voiture.direction,
+                depIndex:store.getState().voiture.depIndex,
+                spriteLocation : store.getState().voiture.spriteLocation,
+                taskChoix : this.state.tasks.concat(blocks),
+            }
+        })
+
     }
 
 

@@ -11,7 +11,10 @@ import NavAccueil from './BarreNavigation/barreNavAccueil';
 import BarreDeChoix from './BarreDeChoix';
 import BarreDeChoix2 from './BarreDeChoix2';
 import World from '../features/world';
+import Voiture from "../features/Voiture";
+import store from '../config/store'
 
+import handleDeplacement from '../features/Voiture/deplacement'
 
 
 
@@ -42,6 +45,7 @@ export default class fenetreJeu extends Component {
     deplacement = ()=>{
         this.setState({choix : this.choix2.tasks
         });
+
     }
     state = {
         tasks: [
@@ -59,6 +63,8 @@ export default class fenetreJeu extends Component {
 
 
 
+
+
     render() {
 
         return (
@@ -71,10 +77,8 @@ export default class fenetreJeu extends Component {
 
                 <div className="interface">
                     <div className="container">
-                        <BarreDeChoix  task={this.state.tasks}/>
-                        <BarreDeChoix2 sendData={this.getDataChoix2.bind(this)} className="droppable2" nomDeTask="Ouadie" task={this.state.tasks}/>
 
-                        <World sendData={this.getDataChoix2.bind(this)} />
+                        <World onClick={this.deplacement.bind(this)} choix={this.state.choix} task= {this.state.tasks} sendData={this.getDataChoix2.bind(this)} />
 
 
                     </div>

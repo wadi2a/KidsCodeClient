@@ -3,6 +3,7 @@ const initialState = {
     spriteLocation: '0px 160px',
     direction: 'WEST',
     depIndex: 0,
+    taskChoix : [],
 }
 
 const voitureReducer = (state = initialState,action)=>{
@@ -12,6 +13,7 @@ const voitureReducer = (state = initialState,action)=>{
                 ...action.payload
 
             }
+
         default :
             return state
 

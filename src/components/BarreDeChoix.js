@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-
+import {dataBlock} from '../data/blocks'
 
 export default class BarreDeChoix extends Component {
 
@@ -8,7 +8,7 @@ export default class BarreDeChoix extends Component {
         super(props);
 
 
-            this.state.tasks = props.task;
+            this.state.tasks = dataBlock;
 
     }
 

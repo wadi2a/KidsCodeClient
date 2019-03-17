@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.4.1",
+    "es6-sleep": "^2.0.2",
     "gsap": "^2.1.0",
     "pubsub": "^3.2.1",
     "pubsub-js": "^1.7.0",

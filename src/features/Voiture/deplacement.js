@@ -1,6 +1,6 @@
 import store from '../../config/store'
 import {MAP_HEIGHT, MAP_WIDTH, SPRITE_SIZE} from '../../config/constants'
-import {TimelineLite} from "gsap";
+import {TimelineMax} from "gsap";
 
 
 export default function handleDeplacement(voiture) {
@@ -56,12 +56,40 @@ export default function handleDeplacement(voiture) {
             dispatchMove(direction,newPos,oldPos)
         }
     }
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
+    }
+    function attemptManyMove(direction) {
 
+        let tl = new TimelineMax();
+let i =0
+        let oldPos = store.getState().voiture.position
+        let newPos = getNewPosition(oldPos, direction)
+
+       do {
+
+               if (observeBoundaries(oldPos, newPos) && observeImpass(oldPos, newPos)) {
+                 //  sleep(500)
+                   console.log("dontinder")
+
+                   dispatchMove(direction, newPos, oldPos);
+                   tl.to(".Voit", 1, {left:newPos});
+               }
+               i=i+1;
+           oldPos = store.getState().voiture.position
+           newPos = getNewPosition(oldPos, direction)
+     }while (observeBoundaries(oldPos, newPos) && observeImpass(oldPos, newPos) && i<50)
+
+    }
 
 
     function dispatchMove(direction,newPos,oldPos) {
         const depIndex =getDepIndex()
-
 
 
 
@@ -72,8 +100,10 @@ export default function handleDeplacement(voiture) {
                 direction :direction,
                 depIndex,
                 spriteLocation : getSpriteLocation(direction,depIndex),
+                taskChoix : store.getState().voiture.taskChoix,
             }
         })
+        console.log("testChoix",store.getState().voiture.taskChoix)
 
     }
     function getDepIndex() {
@@ -87,7 +117,7 @@ export default function handleDeplacement(voiture) {
 
 
     }
-    function handleKeyDown(e){
+   function handleKeyDown(e){
         e.preventDefault()
         switch (e.keyCode) {
             case 37 :
@@ -102,10 +132,33 @@ export default function handleDeplacement(voiture) {
                 console.log(e.keyCode)
         }
     }
+    function handleDeplacement(e){
+        e.preventDefault()
 
+        if (e.target["id"]==="start") {
+
+            store.getState().voiture.taskChoix.forEach((t)=>{
+                switch (t.name) {
+                    case "WEST" :
+                        return attemptManyMove("WEST")
+                    case "NORTH" :
+                        return attemptManyMove("NORTH")
+                    case "EAST" :
+                        return attemptManyMove("EAST")
+                    case "SOUTH" :
+                        return attemptManyMove("SOUTH")
+                    default:
+                        console.log(t.name)
+                }
+            })
+        }
+    }
 
     window.addEventListener('keydown',(e)=>{
         handleKeyDown(e)
+    })
+    window.addEventListener('click',(e)=>{
+        handleDeplacement(e)
     })
     return voiture
 }

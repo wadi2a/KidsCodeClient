@@ -1,13 +1,18 @@
 import React from 'react'
 import Map from '../Map'
 import Voiture from '../Voiture'
-import Barre1 from '../BarreChoix'
+
 import {tiles} from '../../data/maps/1'
 import store from '../../config/store'
+import BarreDeChoix from "../../components/BarreDeChoix";
+import BarreDeChoix2 from "../../components/BarreDeChoix2";
+
 function World(props) {
     store.dispatch({type : 'ADD_TILES',payload : {
         tiles,
         }})
+
+
     return(
          <div
             style={{
@@ -16,8 +21,10 @@ function World(props) {
                 height: '560px',
                 margin: '20px auto',
             }}
-        ><Barre1 sendData={props.sendData}/>
-        <Map/>
+        >    <BarreDeChoix  task={props.task}/>
+             <BarreDeChoix2 sendData={props.sendData}  className="droppable2" nomDeTask="Ouadie" task={props.task}/>
+
+             <Map/>
         <Voiture/>
         </div>
     )

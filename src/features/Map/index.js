@@ -2,7 +2,8 @@ import React from 'react'
 import {SPRITE_SIZE} from "../../config/constants";
 import './styles.css'
 import {connect} from 'react-redux'
-
+import store from '../../config/store'
+import Voiture from '../Voiture'
 
 function getTileSprite(type) {
     switch (type) {
@@ -38,6 +39,10 @@ function MapRow(props) {
 
 }
 
+
+
+
+
 function Map(props) {
 
 
@@ -56,6 +61,7 @@ function Map(props) {
 
 
             }
+            <button id="start" type="button"  style={{ position : 'absolute', top:'0px',left:'1100px', margin: '20px auto'}}className="btn btn-light">Start</button>
         </div>
 
     )
