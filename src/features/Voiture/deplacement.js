@@ -46,15 +46,34 @@ export default function handleDeplacement(voiture) {
         const x = newPos[0]/SPRITE_SIZE
         const nextTiles = tiles[y][x]
 
-        return nextTiles === 7
+        return nextTiles === 7 || nextTiles === 1
+
+    }
+    function observeFin(oldPos,newPos) {
+        const tiles = store.getState().map.tiles
+
+        const y = newPos[1]/SPRITE_SIZE
+        const x = newPos[0]/SPRITE_SIZE
+        const nextTiles = tiles[y][x]
+
+        return  nextTiles === 1
 
     }
     function attemptMove(direction) {
+        let tl = new TimelineMax({repeat:2, repeatDelay:1});
         const oldPos = store.getState().voiture.position
         const newPos = getNewPosition(oldPos,direction)
         if(observeBoundaries(oldPos,newPos)&& observeImpass(oldPos,newPos) ){
             dispatchMove(direction,newPos,oldPos)
+            let songVoiture = new Audio('../../assets/audio/voiture2.ogg')
+            songVoiture.play()
         }
+        if(observeFin(oldPos,newPos)){
+
+            tl.to(".animationFin",  1, {scale:0.0});
+            tl.to(".animationFin",  1, {scale:1, opacity:1});
+        }
+
     }
     function sleep(milliseconds) {
         var start = new Date().getTime();
@@ -65,8 +84,8 @@ export default function handleDeplacement(voiture) {
         }
     }
     function attemptManyMove(direction) {
-
-        let tl = new TimelineMax();
+        let tl = new TimelineMax({repeat:2, repeatDelay:1});
+//let tl = TimelineMax();
 let i =0
         let oldPos = store.getState().voiture.position
         let newPos = getNewPosition(oldPos, direction)
@@ -78,14 +97,28 @@ let i =0
                    console.log("dontinder")
 
                    dispatchMove(direction, newPos, oldPos);
-                   tl.to(".Voit", 1, {left:newPos});
+
+                 //  tl.to(".Voit", 1, {left:newPos});
                }
+           if(observeFin(oldPos,newPos)){
+
+               tl.to(".animationFin",  1, {scale:0.0});
+               tl.to(".animationFin",  1, {scale:1, opacity:1});
+           }
                i=i+1;
            oldPos = store.getState().voiture.position
            newPos = getNewPosition(oldPos, direction)
      }while (observeBoundaries(oldPos, newPos) && observeImpass(oldPos, newPos) && i<50)
 
     }
+
+
+    function  animation() {
+        let tl = new TimelineMax({repeat:2, repeatDelay:1});
+        tl.to(".Voit",  1, {scale:0.0});
+        tl.to(".Voit",  1, {scale:1, opacity:1});
+    }
+
 
 
     function dispatchMove(direction,newPos,oldPos) {
@@ -119,6 +152,7 @@ let i =0
     }
    function handleKeyDown(e){
         e.preventDefault()
+       console.log("event",e)
         switch (e.keyCode) {
             case 37 :
                 return attemptMove("WEST")
@@ -154,11 +188,11 @@ let i =0
         }
     }
 
-    window.addEventListener('keydown',(e)=>{
-        handleKeyDown(e)
-    })
     window.addEventListener('click',(e)=>{
         handleDeplacement(e)
+    })
+    window.addEventListener('keydown',(e)=>{
+        handleKeyDown(e)
     })
     return voiture
 }

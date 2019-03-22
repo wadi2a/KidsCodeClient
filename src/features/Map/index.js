@@ -4,6 +4,8 @@ import './styles.css'
 import {connect} from 'react-redux'
 import store from '../../config/store'
 import Voiture from '../Voiture'
+import logo from "../../assets/images/animationFin.png";
+import ReactTestUtils from 'react-dom/test-utils'; // ES6
 
 function getTileSprite(type) {
     switch (type) {
@@ -15,6 +17,8 @@ function getTileSprite(type) {
             return 'tree'
         case 7 :
             return 'route'
+        case 1 :
+            return 'briqueFin'
 
     }
 }
@@ -38,9 +42,24 @@ function MapRow(props) {
     </div>
 
 }
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds){
+            break;
+        }
+    }
+}
+
+
+/*function dispatchEventt() {
+
+        let evt = new KeyboardEvent('keydown', {'keyCode': 37, 'which': 37})
+        window.dispatchEvent(evt);
 
 
 
+}*/
 
 
 function Map(props) {
@@ -62,6 +81,8 @@ function Map(props) {
 
             }
             <button id="start" type="button"  style={{ position : 'absolute', top:'0px',left:'1100px', margin: '20px auto'}}className="btn btn-light">Start</button>
+            <img   className="animationFin"  src={logo} alt="Animation fin" />
+
         </div>
 
     )

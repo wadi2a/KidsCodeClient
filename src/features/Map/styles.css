@@ -11,10 +11,18 @@
 .rock {
     background-image : url('../../assets/images/rock.png')
 }
-
+.briqueFin {
+    background-image : url('../../assets/images/fin.png')
+}
 .tree {
     background-image : url('../../assets/images/tree.png')
 }
 .row{
     margin-top: -5px;
+}
+.animationFin{
+    position: absolute;
+    top: 60px;
+    left:400px;
+    opacity: 0.0;
 }

@@ -6,6 +6,7 @@ const initialState = {
     taskChoix : [],
 }
 
+
 const voitureReducer = (state = initialState,action)=>{
     switch (action.type) {
         case 'MOVE_VOITURE' :

@@ -25,6 +25,7 @@ function World(props) {
              <BarreDeChoix2 sendData={props.sendData}  className="droppable2" nomDeTask="Ouadie" task={props.task}/>
 
              <Map/>
+
         <Voiture/>
         </div>
     )
