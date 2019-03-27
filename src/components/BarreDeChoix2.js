@@ -31,6 +31,10 @@ export default class BarreDeChoix2 extends Component {
         ]
     }
 
+     reuinit()  {
+        this.setState({tasks : []  });
+    }
+
     onClick = (ev, tas) => {
         console.log('dragstart:',tas);
 
@@ -47,6 +51,7 @@ export default class BarreDeChoix2 extends Component {
 
         });
     }
+
 
     onDragOver = (ev) => {
         ev.preventDefault();
@@ -90,6 +95,11 @@ export default class BarreDeChoix2 extends Component {
             complete: [],
 
         }
+        window.addEventListener('click',(e)=>{
+            if (e.target["id"]==="Reinit") {
+                this.reuinit()
+            }
+        })
         let i = 0;
         this.state.tasks.forEach ((t) => {
             tasks["complete"].push(

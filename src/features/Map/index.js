@@ -7,6 +7,9 @@ import Voiture from '../Voiture'
 import logo from "../../assets/images/animationFin.png";
 import ReactTestUtils from 'react-dom/test-utils'; // ES6
 
+import reinit from "../../assets/images/fleche-rond-png-3.png";
+import start from "../../assets/images/1rightarrow.png";
+
 function getTileSprite(type) {
     switch (type) {
         case 0 :
@@ -80,8 +83,8 @@ function Map(props) {
 
 
             }
-            <button id="start" type="button"  style={{ position : 'absolute', top:'0px',left:'1100px', margin: '20px auto'}}className="btn btn-light">Start</button>
-            <button id="Reinit" type="button"  style={{ position : 'absolute', top:'0px',left:'1100px', margin: '20px auto'}}className="btn btn-light">Start</button>
+            <button  type="button"  style={{ width:'85px',height:'85px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'50%', color:'#555',position : 'absolute', top:'0px',left:'1049px', margin: '20px auto'}} > <img id="start" style={{width : '50px'}} src={start} alt="start" />             </button>
+            <button type="button"  style={{ width:'85px',height:'85px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'50%', color:'#555',position : 'absolute', top:'0px',left:'122px', margin: '20px auto'}} ><img id="Reinit"  style={{width : '50px'}} src={reinit} alt="reinitialisation" /></button>
 
             <img   className="animationFin"  src={logo} alt="Animation fin" />
 

@@ -1,7 +1,7 @@
 import store from '../../config/store'
 import {MAP_HEIGHT, MAP_WIDTH, SPRITE_SIZE} from '../../config/constants'
 import {TimelineMax} from "gsap";
-
+import BarreDeChoix2 from "../../components/BarreDeChoix2"
 
 export default function handleDeplacement(voiture) {
 
@@ -185,6 +185,23 @@ let i =0
                         console.log(t.name)
                 }
             })
+        }else if (e.target["id"]==="Reinit"){
+            store.dispatch({
+                type : 'MOVE_VOITURE',
+                payload:{
+
+                    position: [1120,160],
+                    spriteLocation: '0px 160px',
+                    direction: 'WEST',
+                    depIndex: 0,
+                    taskChoix : [],
+                }
+            })
+
+            let tl = new TimelineMax();
+            tl.to(".animationFin",  1, {opacity:0});
+
+
         }
     }
 
