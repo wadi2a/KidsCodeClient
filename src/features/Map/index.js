@@ -81,6 +81,8 @@ function Map(props) {
 
             }
             <button id="start" type="button"  style={{ position : 'absolute', top:'0px',left:'1100px', margin: '20px auto'}}className="btn btn-light">Start</button>
+            <button id="Reinit" type="button"  style={{ position : 'absolute', top:'0px',left:'1100px', margin: '20px auto'}}className="btn btn-light">Start</button>
+
             <img   className="animationFin"  src={logo} alt="Animation fin" />
 
         </div>
