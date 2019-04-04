@@ -3,6 +3,7 @@ import Map from '../Map'
 import Voiture from '../Voiture'
 
 import {tiles} from '../../data/maps/1'
+import {tiles1} from '../../data/maps/2'
 import store from '../../config/store'
 import BarreDeChoix from "../../components/BarreDeChoix";
 import BarreDeChoix2 from "../../components/BarreDeChoix2";
@@ -26,7 +27,7 @@ function World(props) {
 
              <Map/>
 
-        <Voiture/>
+        <Voiture/> 
         </div>
     )
 }

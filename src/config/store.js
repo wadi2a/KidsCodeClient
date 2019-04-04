@@ -4,16 +4,7 @@ import mapReducer from '../features/Map/reducer'
 import thunk from "redux-thunk";
 
 
-import {asyncActionsMiddleware} from 'redux-minimal-code-async-actions'
-const enhancers = [];
-const middleware = [
-    asyncActionsMiddleware,
-]
 
-const composedEnhancers = compose(
-    applyMiddleware(...middleware),
-    ...enhancers
-);
 
 
 
@@ -25,7 +16,7 @@ const rootReducer= combineReducers({
 
 const store = createStore(
     rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()&&applyMiddleware(thunk)&& composedEnhancers,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 )
 
 export  default  store

@@ -5,10 +5,12 @@ import {connect} from 'react-redux'
 import store from '../../config/store'
 import Voiture from '../Voiture'
 import logo from "../../assets/images/animationFin.png";
+import logoB from "../../assets/images/animationFinBug.png";
 import ReactTestUtils from 'react-dom/test-utils'; // ES6
 
 import reinit from "../../assets/images/fleche-rond-png-3.png";
 import start from "../../assets/images/1rightarrow.png";
+import {tiles1} from "../../data/maps/2";
 
 function getTileSprite(type) {
     switch (type) {
@@ -53,7 +55,23 @@ function sleep(milliseconds) {
         }
     }
 }
+function mise() {
 
+    store.dispatch({type : 'ADD_TILES',payload : {
+            tiles:tiles1,
+        }})
+    store.dispatch({
+        type : 'MOVE_VOITURE',
+        payload:{
+
+            position: [1120,160],
+            spriteLocation: '0px 160px',
+            direction: 'WEST',
+            depIndex: 0,
+            taskChoix : [],
+        }
+    })
+}
 
 /*function dispatchEventt() {
 
@@ -83,11 +101,13 @@ function Map(props) {
 
 
             }
+
             <button  type="button"  style={{ width:'85px',height:'85px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'50%', color:'#555',position : 'absolute', top:'0px',left:'1049px', margin: '20px auto'}} > <img id="start" style={{width : '50px'}} src={start} alt="start" />             </button>
             <button type="button"  style={{ width:'85px',height:'85px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'50%', color:'#555',position : 'absolute', top:'0px',left:'122px', margin: '20px auto'}} ><img id="Reinit"  style={{width : '50px'}} src={reinit} alt="reinitialisation" /></button>
+            <button onClick={mise.bind(this)} type="button"  style={{ width:'20px',height:'20px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'50%', color:'#555',position : 'absolute', top:'60px',left:'122px', margin: '20px auto'}} ></button>
 
             <img   className="animationFin"  src={logo} alt="Animation fin" />
-
+            <img   className="animationFinbug"  src={logo} alt="Animation fin" />
         </div>
 
     )

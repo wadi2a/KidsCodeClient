@@ -2,6 +2,7 @@ import store from '../../config/store'
 import {MAP_HEIGHT, MAP_WIDTH, SPRITE_SIZE} from '../../config/constants'
 import {TimelineMax} from "gsap";
 import BarreDeChoix2 from "../../components/BarreDeChoix2"
+import {tiles1} from "../../data/maps/2";
 
 export default function handleDeplacement(voiture) {
 
@@ -84,7 +85,8 @@ export default function handleDeplacement(voiture) {
         }
     }
     function attemptManyMove(direction) {
-        let tl = new TimelineMax({repeat:2, repeatDelay:1});
+        let tl = new TimelineMax({repeat:1, repeatDelay:1});
+        let tf = new TimelineMax();
 //let tl = TimelineMax();
 let i =0
         let oldPos = store.getState().voiture.position
@@ -104,6 +106,14 @@ let i =0
 
                tl.to(".animationFin",  1, {scale:0.0});
                tl.to(".animationFin",  1, {scale:1, opacity:1});
+
+               tl.to(".animationFin",  1, {opacity:0});
+
+
+               let t2 = new TimelineMax();
+               t2.to(".animationFin",  1, {opacity:0});
+
+
            }
                i=i+1;
            oldPos = store.getState().voiture.position

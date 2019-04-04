@@ -31,6 +31,7 @@ export default class BarreDeChoix extends Component {
         }
         let i = 0;
         this.state.tasks.forEach ((t) => {
+            i++
             tasks["wip"].push(
                 <div key={t.name}
 
