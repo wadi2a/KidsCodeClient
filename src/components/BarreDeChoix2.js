@@ -83,6 +83,7 @@ export default class BarreDeChoix2 extends Component {
                 depIndex:store.getState().voiture.depIndex,
                 spriteLocation : store.getState().voiture.spriteLocation,
                 taskChoix : this.state.tasks.concat(blocks),
+                nbVie : store.getState().voiture.nbVie,
             }
         })
 

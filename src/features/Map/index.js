@@ -6,6 +6,8 @@ import store from '../../config/store'
 import Voiture from '../Voiture'
 import logo from "../../assets/images/animationFin.png";
 import logoB from "../../assets/images/animationFinBug.png";
+import coeurRouge from "../../assets/images/CoeurVieRouge.png";
+import coeurBlack from "../../assets/images/CoeurVieNoir.png";
 import ReactTestUtils from 'react-dom/test-utils'; // ES6
 
 import reinit from "../../assets/images/fleche-rond-png-3.png";
@@ -69,6 +71,7 @@ function mise() {
             direction: 'WEST',
             depIndex: 0,
             taskChoix : [],
+            nbVie : store.getState().voiture.nbVie,
         }
     })
 }
@@ -86,6 +89,7 @@ function mise2() {
             direction: 'WEST',
             depIndex: 0,
             taskChoix : [],
+            nbVie : store.getState().voiture.nbVie,
         }
     })
 }
@@ -118,6 +122,16 @@ function Map(props) {
 
 
             }
+            <div className="groupeCoeur">
+                <img   id="coeur4"  src={coeurBlack} alt="coeur1" />
+                <img   id="coeur5"  src={coeurBlack} alt="coeur2" />
+                <img   id="coeur6"  src={coeurBlack} alt="coeur3" />
+            </div>
+            <div className="groupeCoeur">
+                <img   id="coeur1"  src={coeurRouge} alt="coeur1" />
+                <img   id="coeur2"  src={coeurRouge} alt="coeur2" />
+                <img   id="coeur3"  src={coeurRouge} alt="coeur3" />
+            </div>
 
             <button  type="button"  style={{ width:'85px',height:'85px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'50%', color:'#555',position : 'absolute', top:'0px',left:'1049px', margin: '20px auto'}} > <img id="start" style={{width : '50px'}} src={start} alt="start" />             </button>
             <button type="button"  style={{ width:'85px',height:'85px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'50%', color:'#555',position : 'absolute', top:'0px',left:'122px', margin: '20px auto'}} ><img id="Reinit"  style={{width : '50px'}} src={reinit} alt="reinitialisation" /></button>
@@ -125,7 +139,7 @@ function Map(props) {
             <button onClick={mise2.bind(this)} type="button"  style={{ width:'80px',height:'35px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'00%', color:'#555',position : 'absolute', top:'90px',left:'122px', margin: '20px auto'}} >map precedent </button>
 
             <img   className="animationFin"  src={logo} alt="Animation fin" />
-            <img   className="animationFinbug"  src={logo} alt="Animation fin" />
+            <img   className="animationFinbug"  src={logoB} alt="Animation fin" />
         </div>
 
     )
