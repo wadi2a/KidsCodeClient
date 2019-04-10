@@ -144,6 +144,8 @@ let i =0
                 depIndex,
                 spriteLocation : getSpriteLocation(direction,depIndex),
                 taskChoix : store.getState().voiture.taskChoix,
+                nbVie : store.getState().voiture.nbVie,
+
             }
         })
         console.log("testChoix",store.getState().voiture.taskChoix)
@@ -207,25 +209,81 @@ let i =0
                 let t2 = new TimelineMax();
                 t2.to(".animationFinbug",  1, {opacity:0});
 
+                sleep(2000)
+                if(store.getState().voiture.nbVie>=0){
+                    store.dispatch({
+                        type : 'MOVE_VOITURE',
+                        payload:{
+
+                            position: store.getState().voiture.position,
+                            spriteLocation: '0px 160px',
+                            direction: 'WEST',
+                            depIndex: 0,
+                            taskChoix : [],
+                            nbVie : store.getState().voiture.nbVie-1,
+                        }
+                    })
+
+                    let tl = new TimelineMax()
+                    if     (store.getState().voiture.nbVie ==2)     tl.to("#coeur1",  1, {opacity:0})
+                    if(store.getState().voiture.nbVie ==1)  tl.to("#coeur2",  1, {opacity:0})
+                    if   (store.getState().voiture.nbVie ==0)  {tl.to("#coeur3",  1, {opacity:0})}
+                }else
+                {
+                    store.dispatch({
+                        type : 'MOVE_VOITURE',
+                        payload:{
+
+                            position: [1120,160],
+                            spriteLocation: '0px 160px',
+                            direction: 'WEST',
+                            depIndex: 0,
+                            taskChoix : [],
+                            nbVie : 3,
+                        }
+                    })
+                }
+
 
             }
         }else if (e.target["id"]==="Reinit"){
-            store.dispatch({
-                type : 'MOVE_VOITURE',
-                payload:{
+            if   (store.getState().voiture.nbVie >0) {
+                store.dispatch({
+                    type: 'MOVE_VOITURE',
+                    payload: {
 
-                    position: [1120,160],
-                    spriteLocation: '0px 160px',
-                    direction: 'WEST',
-                    depIndex: 0,
-                    taskChoix : [],
-                }
-            })
-
-            let tl = new TimelineMax();
-            tl.to(".animationFin",  1, {opacity:0});
+                        position: [1120, 160],
+                        spriteLocation: '0px 160px',
+                        direction: 'WEST',
+                        depIndex: 0,
+                        taskChoix: [],
+                        nbVie: store.getState().voiture.nbVie,
+                    }
+                })
 
 
+            }else{
+
+                    store.dispatch({
+                        type: 'MOVE_VOITURE',
+                        payload: {
+
+                            position: [1120, 160],
+                            spriteLocation: '0px 160px',
+                            direction: 'WEST',
+                            depIndex: 0,
+                            taskChoix: [],
+                            nbVie: 3,
+                        }
+                    })
+                let tl = new TimelineMax();
+                tl.to(".animationFin", 1, {opacity: 0});
+
+
+                tl.to("#coeur1", 1, {opacity: 1})
+                tl.to("#coeur2", 1, {opacity: 1})
+                tl.to("#coeur3", 1, {opacity: 1})
+            }
         }
     }
 

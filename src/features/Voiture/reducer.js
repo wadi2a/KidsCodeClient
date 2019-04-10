@@ -4,6 +4,8 @@ const initialState = {
     direction: 'WEST',
     depIndex: 0,
     taskChoix : [],
+    nbVie : 3,
+
 }
 
 
