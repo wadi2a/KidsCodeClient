@@ -10,6 +10,7 @@ import ReactTestUtils from 'react-dom/test-utils'; // ES6
 
 import reinit from "../../assets/images/fleche-rond-png-3.png";
 import start from "../../assets/images/1rightarrow.png";
+import heart from "../../assets/images/heart.png";
 import {tiles1} from "../../data/maps/2";
 import {tiles2} from "../../data/maps/3";
 function getTileSprite(type) {
@@ -90,6 +91,8 @@ function mise2() {
     })
 }
 
+
+
 /*function dispatchEventt() {
 
         let evt = new KeyboardEvent('keydown', {'keyCode': 37, 'which': 37})
@@ -104,7 +107,10 @@ function Map(props) {
 
 
     return(
+        
+        
         <div
+        
         style={{
             position : 'relative',
             top:'0px',
@@ -118,15 +124,19 @@ function Map(props) {
 
 
             }
-
+            
             <button  type="button"  style={{ width:'85px',height:'85px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'50%', color:'#555',position : 'absolute', top:'0px',left:'1049px', margin: '20px auto'}} > <img id="start" style={{width : '50px'}} src={start} alt="start" />             </button>
             <button type="button"  style={{ width:'85px',height:'85px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'50%', color:'#555',position : 'absolute', top:'0px',left:'122px', margin: '20px auto'}} ><img id="Reinit"  style={{width : '50px'}} src={reinit} alt="reinitialisation" /></button>
+            <img id="heart" style={{width : '30px', position : 'absolute', top:'0px',left:'1120px', margin: ' auto'}} src={heart} alt="heart" />
+            <img id="heart2" style={{width : '30px', position : 'absolute', top:'0px',left:'1150px', margin: ' auto'}} src={heart} alt="heart" />
+            <img id="heart3" style={{ width : '30px', position : 'absolute', top:'0px',left:'1180px', margin: ' auto'}} src={heart} alt="heart" />
             <button onClick={mise.bind(this)} type="button"  style={{ width:'80px',height:'35px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'00%', color:'#555',position : 'absolute', top:'90px',left:'1000px', margin: '20px auto'}} >map suivant</button>
             <button onClick={mise2.bind(this)} type="button"  style={{ width:'80px',height:'35px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'00%', color:'#555',position : 'absolute', top:'90px',left:'122px', margin: '20px auto'}} >map precedent </button>
 
             <img   className="animationFin"  src={logo} alt="Animation fin" />
             <img   className="animationFinbug"  src={logo} alt="Animation fin" />
         </div>
+        
 
     )
 }
