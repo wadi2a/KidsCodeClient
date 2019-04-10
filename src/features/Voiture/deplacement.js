@@ -195,6 +195,20 @@ let i =0
                         console.log(t.name)
                 }
             })
+            let tl = new TimelineMax({repeat:1, repeatDelay:1});
+            if(!observeFin(store.getState().voiture.position,store.getState().voiture.position)){
+
+                tl.to(".animationFinbug",  1, {scale:0.0});
+                tl.to(".animationFinbug",  1, {scale:1, opacity:1});
+
+                tl.to(".animationFinbug",  1, {opacity:0});
+
+
+                let t2 = new TimelineMax();
+                t2.to(".animationFinbug",  1, {opacity:0});
+
+
+            }
         }else if (e.target["id"]==="Reinit"){
             store.dispatch({
                 type : 'MOVE_VOITURE',
