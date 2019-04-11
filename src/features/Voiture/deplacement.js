@@ -227,7 +227,11 @@ let i =0
                     let tl = new TimelineMax()
                     if     (store.getState().voiture.nbVie ==2)     tl.to("#coeur1",  1, {opacity:0})
                     if(store.getState().voiture.nbVie ==1)  tl.to("#coeur2",  1, {opacity:0})
-                    if   (store.getState().voiture.nbVie ==0)  {tl.to("#coeur3",  1, {opacity:0})}
+                    if   (store.getState().voiture.nbVie ==0)  {tl.to("#coeur3",  1, {opacity:0})
+                        let t = new TimelineMax({repeat:2, repeatDelay:1});
+                        t.to(".gameOver",  1, {scale:0.0});
+                        tl.to(".gameOver",  1, {scale:1, opacity:1});
+                    }
                 }else
                 {
                     store.dispatch({
@@ -242,6 +246,9 @@ let i =0
                             nbVie : 3,
                         }
                     })
+
+
+
                 }
 
 
