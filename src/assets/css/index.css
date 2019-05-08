@@ -3,3 +3,38 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+.Login {
+  width: 40%;
+
+  max-width: 600px;
+  margin: auto;
+background-color: slategray;
+    padding: 30px;
+    border-radius: 20px;
+
+}
+.LoginBack{
+
+padding: 100px;
+    height: 600px;
+    wwidth: 100%;
+    background-image: url("../images/backg2.png");
+}
+.logo{
+width: 80px;
+    height: 50px;
+    margin: 0px;
+    padding: 0px;
+    margin: -14px;
+}
+
+.buttonTop{
+     padding-right: 22px;
+ }
+
+.buttonTop1{
+    margin: 10px;
+}
+.erreur{
+    color: red;
+}

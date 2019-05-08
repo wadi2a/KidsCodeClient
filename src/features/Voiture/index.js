@@ -22,19 +22,19 @@ class  Voiture extends React.Component {
         }
 
         let i = 0;
-    return(
-        <div className="Voit"
-             style = {{
-        position : 'absolute',
-        top:this.props.position[1],
-        left:this.props.position[0],
-        backgroundImage:`url('${walkSprite}')`,
-        backgroundPosition: this.props.spriteLocation,
-        width : '80px',
-        height :'80px',
-        }}
-        />
-    )}
+        return(
+            <div className="Voit"
+                 style = {{
+                     position : 'absolute',
+                     top:this.props.position[1],
+                     left:this.props.position[0],
+                     backgroundImage:`url('${walkSprite}')`,
+                     backgroundPosition: this.props.spriteLocation,
+                     width : '80px',
+                     height :'80px',
+                 }}
+            />
+        )}
 }
 
 function  mapStateToProps(state) {
@@ -55,4 +55,3 @@ const styles = {
 }
 
 export default connect(mapStateToProps)(handleDeplacement(Voiture))
-

@@ -17,7 +17,10 @@ import store from '../config/store'
 import handleDeplacement from '../features/Voiture/deplacement'
 
 
-
+import { Route, Switch } from 'react-router-dom';
+import { Dashboard } from './Dashboard/Dashboard.js';
+import { Login } from './login/login.js';
+import { Signup } from './signup/signup.js';
 
 
 
@@ -75,16 +78,11 @@ export default class fenetreJeu extends Component {
 
                 <NavAccueil/>
 
-                <div className="interface">
-                    <div className="container">
-
-                        <World onClick={this.deplacement.bind(this)} choix={this.state.choix} task= {this.state.tasks} sendData={this.getDataChoix2.bind(this)} />
-
-
-                    </div>
-                </div>
-
-
+                <Switch>
+                    <Route exact path="/" component={Login}/>
+                    <Route exact path ="/signup" component={Signup}/>
+                    <Route path='/dashboard' component={Dashboard} />
+                </Switch>
 
             </div>
         );
