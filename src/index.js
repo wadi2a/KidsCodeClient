@@ -7,8 +7,8 @@ import {Provider} from 'react-redux'
 import store from './config/store'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/css/bootstrap-theme.css'
+import { BrowserRouter } from 'react-router-dom';
 
-
-ReactDOM.render(<Provider store={store}><FenetreJeu/></Provider>, document.getElementById('root'))
+ReactDOM.render(<BrowserRouter><Provider store={store}><FenetreJeu/></Provider></BrowserRouter>, document.getElementById('root'))
 
 
