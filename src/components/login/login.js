@@ -1,7 +1,10 @@
 import React from 'react';
-import { Button, FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import { Button, FormGroup, FormLabel,FormControl } from "react-bootstrap";
 import API from '../../utils/API';
 import '../../assets/css/index.css';
+import classNames from 'classnames';
+
+
 import logo from "../../assets/images/animationFin.png";
 export class Login extends React.Component {
     constructor(props) {
@@ -53,7 +56,7 @@ export class Login extends React.Component {
     }
 
     render() {
-
+        const { classes } = this.props;
         return (
             <div className="LoginBack">
 
@@ -66,7 +69,10 @@ export class Login extends React.Component {
                 <FormGroup controlId="password" bsSize="large">
                     <FormLabel>Password</FormLabel>
                     <FormControl value={this.state.password} onChange={this.handleChange} type="password"/>
+
+
                 </FormGroup>
+
                 <div className="erreur">{localStorage.getItem('text' )}</div>
                 <Button
                     onClick={this.send}
