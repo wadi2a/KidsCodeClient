@@ -84,7 +84,7 @@ export default function handleDeplacement(voiture) {
             }
         }
     }
-    function attemptManyMove(direction) {
+    function attemptManyMove1(direction) {
         let tl = new TimelineMax({repeat:1, repeatDelay:1});
         let tf = new TimelineMax();
 //let tl = TimelineMax();
@@ -122,6 +122,33 @@ let i =0
 
     }
 
+    function attemptManyMove(direction) {
+        let oldPos = store.getState().voiture.position;
+        let newPos = getNewPosition(oldPos, direction);
+        let pass = false
+        const interval = setInterval(() => {
+
+
+
+
+            oldPos = store.getState().voiture.position;
+            newPos = getNewPosition(oldPos, direction);
+            console.log(oldPos, newPos)
+            if (!observeBoundaries(oldPos, newPos) || !observeImpass(oldPos, newPos)) {
+
+                console.log(observeBoundaries(oldPos, newPos),"JENSUISMA",observeImpass(oldPos, newPos))
+
+                clearInterval(interval);
+                pass = true
+                //  tl.to(".Voit", 1, {left:newPos});
+            }
+            if(!pass)dispatchMove(direction, newPos, oldPos);
+            pass=false
+            // if (/* stop condition */)
+            //     clearInterval(interval);
+        }, 100)
+
+    }
 
     function  animation() {
         let tl = new TimelineMax({repeat:2, repeatDelay:1});
@@ -184,6 +211,8 @@ let i =0
         if (e.target["id"]==="start") {
 
             store.getState().voiture.taskChoix.forEach((t)=>{
+                const interval = setInterval(() => {
+                console.log("exect")
                 switch (t.name) {
                     case "WEST" :
                         return attemptManyMove("WEST")
@@ -196,6 +225,8 @@ let i =0
                     default:
                         console.log(t.name)
                 }
+                    clearInterval(interval);
+                }, 10)
             })
             let tl = new TimelineMax({repeat:1, repeatDelay:1});
             if(!observeFin(store.getState().voiture.position,store.getState().voiture.position)){
