@@ -3,13 +3,20 @@ import {MAP_HEIGHT, MAP_WIDTH, SPRITE_SIZE} from '../../config/constants'
 import {TimelineMax} from "gsap";
 import BarreDeChoix2 from "../../components/BarreDeChoix2"
 import {tiles1} from "../../data/maps/2";
-
-import {asset, NativeModules} from 'react-360';
-const {AudioModule} = NativeModules;
-
+import   VoitureSound from '../../assets/audio/voiture_audiosprite.mp3';
+import   VoitureAccident from '../../assets/audio/accident.mp3';
+import   VoitureGagner from '../../assets/audio/gagner.mp3';
+import   evil from '../../assets/audio/evil.mp3';
+import gameover from '../../assets/audio/Game-over-sound.mp3';
+const sound = new Audio(VoitureSound);
+const  accident  = new Audio(VoitureAccident);
+const gagner = new Audio(VoitureGagner);
+const evilFail = new Audio(evil);
+const gameoverSound  = new Audio(gameover);
 
 export default function handleDeplacement(voiture) {
     let pass = false
+
     let counter1 = 0;
     let intervalId1 = null;
     let intervalId2 = null;
@@ -46,6 +53,11 @@ export default function handleDeplacement(voiture) {
     function _WEST() {
         let direction = "WEST"
 
+        sound.volume = 1;
+        accident.currentTime=9;
+        sound.repeat=2;
+        sound.play();
+
         let oldPos = store.getState().voiture.position
         let newPos = getNewPosition(oldPos, direction)
           pass = false
@@ -67,6 +79,11 @@ export default function handleDeplacement(voiture) {
     function _EAST() {
         let direction = "EAST"
 
+        sound.volume = 1;
+        accident.currentTime=9;
+        sound.repeat=2;
+        sound.play();
+
         let oldPos = store.getState().voiture.position
         let newPos = getNewPosition(oldPos, direction)
         pass = false
@@ -76,7 +93,8 @@ export default function handleDeplacement(voiture) {
 
             console.log(observeBoundaries(oldPos, newPos), "JENSUISMA", observeImpass(oldPos, newPos))
            // if(observeFin(oldPos,newPos))
-                finish3()
+                finish3();
+
 
             pass = true
             //  tl.to(".Voit", 1, {left:newPos});
@@ -88,6 +106,12 @@ export default function handleDeplacement(voiture) {
     function _NORTH() {
         let direction = "NORTH"
 
+
+        sound.volume = 1;
+        accident.currentTime=9;
+        sound.repeat=2;
+        sound.play();
+
         let oldPos = store.getState().voiture.position
         let newPos = getNewPosition(oldPos, direction)
         pass = false
@@ -96,7 +120,8 @@ export default function handleDeplacement(voiture) {
         if (!observeBoundaries(oldPos, newPos) || !observeImpass(oldPos, newPos)) {
 
             console.log(observeBoundaries(oldPos, newPos), "JENSUISMA", observeImpass(oldPos, newPos))
-            if(observeFin(oldPos,newPos))finish2()
+            //if(observeFin(oldPos,newPos))
+                finish2()
 
             pass = true
             //  tl.to(".Voit", 1, {left:newPos});
@@ -107,6 +132,11 @@ export default function handleDeplacement(voiture) {
     }
     function _SOUTH() {
         let direction = "SOUTH"
+
+        sound.volume = 1;
+        accident.currentTime=9;
+        sound.repeat=2;
+        sound.play();
 
         let oldPos = store.getState().voiture.position
         let newPos = getNewPosition(oldPos, direction)
@@ -126,16 +156,16 @@ export default function handleDeplacement(voiture) {
 
     }
     function startWest(){
-        intervalId1 = setInterval(_WEST, 100);
+        intervalId1 = setInterval(_WEST, 150);
     }
     function startSouth(){
-        intervalId2 = setInterval(_SOUTH, 100);
+        intervalId2 = setInterval(_SOUTH, 150);
     }
     function startEast(){
-        intervalId3 = setInterval(_EAST, 100);
+        intervalId3 = setInterval(_EAST, 150);
     }
     function startNorth(){
-        intervalId3 = setInterval(_NORTH, 100);
+        intervalId3 = setInterval(_NORTH, 150);
     }
     function getSpriteLocation(direction,depIndex) {
 
@@ -289,10 +319,12 @@ let i =0
             setTimeout(() => {
                 resolve(x);
 
-            }, 10000);
+            }, 8000);
         });
     }
     async function f5(action) {
+
+
         let x;
         switch (action[action.length-5]) {
             case "WEST" : x = await resolveAfter2Seconds1(startWest()); break ;
@@ -301,6 +333,8 @@ let i =0
             case "NORTH" : x = await resolveAfter2Seconds1( startNorth()) ; break ;
             default : console.log(action[action.length-1],"default tableau d'action derniere colonne")
         }
+
+
         switch (action[action.length-4]) {
             case "WEST" :startWest() ; break ;
             case "EAST" : startEast(); break ;
@@ -308,10 +342,13 @@ let i =0
             case "NORTH" : startNorth() ; break ;
             default : console.log(action[action.length-1],"default tableau d'action derniere colonne")
         }
+
+
         console.log(x); // 10
         }
 
     async function f4(action) {
+
         let x = await resolveAfter2Seconds2(f5(action));
         switch (action[action.length-3]) {
             case "WEST" :startWest() ; break ;
@@ -320,6 +357,7 @@ let i =0
             case "NORTH" : startNorth() ; break ;
             default : console.log(action[action.length-1],"default tableau d'action derniere colonne")
         }
+
         console.log(x); // 10
     }
     async function f3(action) {
@@ -334,6 +372,7 @@ let i =0
         console.log(x); // 10
     }
     async function f2(action) {
+
         let x = await resolveAfter2Seconds4(f3(action));
         switch (action[action.length-1]) {
             case "WEST" :startWest() ; break ;
@@ -343,20 +382,19 @@ let i =0
             default : console.log(action[action.length-1],"default tableau d'action derniere colonne")
         }
         console.log(x); // 10
+
     }
     async function f1(action) {
 
         let x = await resolveAfter2Seconds5(f2(action));
-
-        AudioModule.playEnvironmental({
-            source: asset('../../assets/audio/voiture_audiosprite.mp3'),
-            volume: 0.3, // play at 3/10 original volume
-        });
-
-
+        accident.currentTime=0;
+        sound.pause();
 
         let tl = new TimelineMax({repeat:1, repeatDelay:1});
         if(!observeFin(store.getState().voiture.position,store.getState().voiture.position)){
+            accident.volume=1;
+            accident.play();
+
 
             tl.to(".animationFinbug",  1, {scale:0.0});
             tl.to(".animationFinbug",  1, {scale:1, opacity:1});
@@ -367,7 +405,8 @@ let i =0
             let t2 = new TimelineMax();
             t2.to(".animationFinbug",  1, {opacity:0});
 
-            sleep(2000)
+
+            sleep(3000)
             if(store.getState().voiture.nbVie>=0){
                 store.dispatch({
                     type : 'MOVE_VOITURE',
@@ -381,17 +420,20 @@ let i =0
                         nbVie : store.getState().voiture.nbVie-1,
                     }
                 })
-
+                accident.pause();
+                accident.currentTime=0;
                 let tl = new TimelineMax()
                 if     (store.getState().voiture.nbVie ==2)     tl.to("#coeur1",  1, {opacity:0})
                 if(store.getState().voiture.nbVie ==1)  tl.to("#coeur2",  1, {opacity:0})
                 if   (store.getState().voiture.nbVie ==0)  {tl.to("#coeur3",  1, {opacity:0})
+                    gameoverSound.play();
                     let t = new TimelineMax({repeat:2, repeatDelay:1});
                     t.to(".gameOver",  1, {scale:0.0});
                     tl.to(".gameOver",  1, {scale:1, opacity:1});
                 }
             }else
             {
+
                 store.dispatch({
                     type : 'MOVE_VOITURE',
                     payload:{
@@ -409,8 +451,11 @@ let i =0
 
             }
 
-
+            evilFail.volume=1;
+            evilFail.play();
         }else{
+
+            gagner.play();
 
 
                 tl.to(".animationFin",  1, {scale:0.0});
@@ -422,6 +467,7 @@ let i =0
                 let t2 = new TimelineMax();
                 t2.to(".animationFin",  1, {opacity:0});
 
+           // gagner.pause();
 
 
         }

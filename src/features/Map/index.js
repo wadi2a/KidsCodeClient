@@ -15,6 +15,9 @@ import reinit from "../../assets/images/fleche-rond-png-3.png";
 import start from "../../assets/images/1rightarrow.png";
 import {tiles1} from "../../data/maps/2";
 import {tiles2} from "../../data/maps/3";
+import VoitureSound from "../../assets/audio/voiture_audiosprite.mp3";
+import   jeux from '../../assets/audio/jeux.mp3';
+let sound;
 function getTileSprite(type) {
     switch (type) {
         case 0 :
@@ -107,7 +110,10 @@ function mise2() {
 
 function Map(props) {
 
-
+    sound = new Audio(jeux);
+    sound.volume = 0.1;
+    sound.repeatDelay=true;
+    sound.play();
     return(
         <div
         style={{
