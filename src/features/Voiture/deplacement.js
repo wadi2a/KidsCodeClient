@@ -5,7 +5,131 @@ import BarreDeChoix2 from "../../components/BarreDeChoix2"
 import {tiles1} from "../../data/maps/2";
 
 export default function handleDeplacement(voiture) {
+    let pass = false
+    let counter1 = 0;
+    let intervalId1 = null;
+    let intervalId2 = null;
+    let intervalId3 = null;
+    let counter = 10;
+    let intervalId = null;
+    function finish() {
+        clearInterval(intervalId);
+        document.getElementById("bip").innerHTML = "TERMINE!";
+    }
+    function bip() {
+        counter--;
+        if(counter < 0) finish();
+        else {
+            document.getElementById("bip").innerHTML = counter + " secondes restantes";
+        }
+    }
+    function start(){
+        intervalId = setInterval(bip, 1000);
+    }
+    function finish1() {
+        clearInterval(intervalId1);
+        document.getElementById("bip1").innerHTML = "TERMINEW!";
+    }
+    function finish2() {
+        clearInterval(intervalId2);
+        document.getElementById("bip1").innerHTML = "TERMINES!";
+    }
+    function finish3() {
+        clearInterval(intervalId3);
+        document.getElementById("bip1").innerHTML = "TERMINE!E";
+    }
 
+    function _WEST() {
+        let direction = "WEST"
+
+        let oldPos = store.getState().voiture.position
+        let newPos = getNewPosition(oldPos, direction)
+          pass = false
+
+            console.log(oldPos, newPos)
+            if (!observeBoundaries(oldPos, newPos) || !observeImpass(oldPos, newPos)) {
+
+                console.log(observeBoundaries(oldPos, newPos), "JENSUISMA", observeImpass(oldPos, newPos))
+               // if(observeFin(oldPos,newPos))
+                    finish1()
+
+                pass = true
+                //  tl.to(".Voit", 1, {left:newPos});
+            }
+            if (!pass) dispatchMove(direction, newPos, oldPos);
+            pass = false
+
+    }
+    function _EAST() {
+        let direction = "EAST"
+
+        let oldPos = store.getState().voiture.position
+        let newPos = getNewPosition(oldPos, direction)
+        pass = false
+
+        console.log(oldPos, newPos)
+        if (!observeBoundaries(oldPos, newPos) || !observeImpass(oldPos, newPos)) {
+
+            console.log(observeBoundaries(oldPos, newPos), "JENSUISMA", observeImpass(oldPos, newPos))
+           // if(observeFin(oldPos,newPos))
+                finish3()
+
+            pass = true
+            //  tl.to(".Voit", 1, {left:newPos});
+        }
+        if (!pass) dispatchMove(direction, newPos, oldPos);
+        pass = false
+
+    }
+    function _NORTH() {
+        let direction = "NORTH"
+
+        let oldPos = store.getState().voiture.position
+        let newPos = getNewPosition(oldPos, direction)
+        pass = false
+
+        console.log(oldPos, newPos)
+        if (!observeBoundaries(oldPos, newPos) || !observeImpass(oldPos, newPos)) {
+
+            console.log(observeBoundaries(oldPos, newPos), "JENSUISMA", observeImpass(oldPos, newPos))
+            if(observeFin(oldPos,newPos))finish2()
+
+            pass = true
+            //  tl.to(".Voit", 1, {left:newPos});
+        }
+        if (!pass) dispatchMove(direction, newPos, oldPos);
+        pass = false
+
+    }
+    function _SOUTH() {
+        let direction = "SOUTH"
+
+        let oldPos = store.getState().voiture.position
+        let newPos = getNewPosition(oldPos, direction)
+        pass = false
+
+        console.log(oldPos, newPos)
+        if (!observeBoundaries(oldPos, newPos) || !observeImpass(oldPos, newPos)) {
+
+            console.log(observeBoundaries(oldPos, newPos), "JENSUISMA", observeImpass(oldPos, newPos))
+            finish2()
+
+            pass = true
+            //  tl.to(".Voit", 1, {left:newPos});
+        }
+        if (!pass) dispatchMove(direction, newPos, oldPos);
+        pass = false
+
+    }
+    function startWest(){
+        intervalId1 = setInterval(_WEST, 100);
+    }
+    function startSouth(){
+        intervalId2 = setInterval(_SOUTH, 100);
+    }
+    function startEast(){
+        intervalId3 = setInterval(_EAST, 100);
+    }
     function getSpriteLocation(direction,depIndex) {
 
         switch(direction) {
@@ -121,35 +245,48 @@ let i =0
      }while (observeBoundaries(oldPos, newPos) && observeImpass(oldPos, newPos) && i<50)
 
     }
+    function resolveAfter2Seconds(x) {
+        return new Promise(resolve => {startWest();
+            setTimeout(() => {
+                resolve(x);
 
-    function attemptManyMove(direction) {
-        let oldPos = store.getState().voiture.position;
-        let newPos = getNewPosition(oldPos, direction);
-        let pass = false
-        const interval = setInterval(() => {
+            }, 2000);
+        });
+    }
+    function resolveAfter2Seconds2(x) {
+        return new Promise(resolve => {f2();
+            setTimeout(() => {
+                resolve(x);
 
-
-
-
-            oldPos = store.getState().voiture.position;
-            newPos = getNewPosition(oldPos, direction);
-            console.log(oldPos, newPos)
-            if (!observeBoundaries(oldPos, newPos) || !observeImpass(oldPos, newPos)) {
-
-                console.log(observeBoundaries(oldPos, newPos),"JENSUISMA",observeImpass(oldPos, newPos))
-
-                clearInterval(interval);
-                pass = true
-                //  tl.to(".Voit", 1, {left:newPos});
-            }
-            if(!pass)dispatchMove(direction, newPos, oldPos);
-            pass=false
-            // if (/* stop condition */)
-            //     clearInterval(interval);
-        }, 100)
-
+            }, 4000);
+        });
+    }
+    async function f2() {
+        let x = await resolveAfter2Seconds(10);
+        startSouth();
+        console.log(x); // 10
+    }
+    async function f1() {
+        let x = await resolveAfter2Seconds2(10);
+        startEast();
+        console.log(x); // 10
     }
 
+    function attemptManyMove() {
+        let i = 0;
+        let tab = store.getState().voiture.taskChoix;
+
+      //  do {
+        f1()
+            start();
+
+
+
+        //startEast();
+       //     i=i+1;
+        //    if(tab[i]==null) {console.log("jsuis nullé",tab[i],i);clearInterval(interval);}
+      //  }while( tab[i]!=null)
+    }
     function  animation() {
         let tl = new TimelineMax({repeat:2, repeatDelay:1});
         tl.to(".Voit",  1, {scale:0.0});
@@ -210,24 +347,9 @@ let i =0
 
         if (e.target["id"]==="start") {
 
-            store.getState().voiture.taskChoix.forEach((t)=>{
-                const interval = setInterval(() => {
-                console.log("exect")
-                switch (t.name) {
-                    case "WEST" :
-                        return attemptManyMove("WEST")
-                    case "NORTH" :
-                        return attemptManyMove("NORTH")
-                    case "EAST" :
-                        return attemptManyMove("EAST")
-                    case "SOUTH" :
-                        return attemptManyMove("SOUTH")
-                    default:
-                        console.log(t.name)
-                }
-                    clearInterval(interval);
-                }, 10)
-            })
+         return attemptManyMove( )
+
+
             let tl = new TimelineMax({repeat:1, repeatDelay:1});
             if(!observeFin(store.getState().voiture.position,store.getState().voiture.position)){
 

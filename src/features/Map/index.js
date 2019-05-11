@@ -128,6 +128,7 @@ function Map(props) {
                 <img   id="coeur5"  src={coeurBlack} alt="coeur2" />
                 <img   id="coeur6"  src={coeurBlack} alt="coeur3" />
             </div>
+
             <div className="groupeCoeur">
                 <img   id="coeur1"  src={coeurRouge} alt="coeur1" />
                 <img   id="coeur2"  src={coeurRouge} alt="coeur2" />

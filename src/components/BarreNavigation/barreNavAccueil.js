@@ -86,6 +86,8 @@ export default class NavBarAccueil extends Component {
                                     s'inscrire
                                 </Button>
                                 </li>
+                                <li className="bip">   <div id="bip"></div></li>
+                                <li className="bip1">   <div id="bip1"></div></li>
                             </ul>
                         </div>
                     </nav>
