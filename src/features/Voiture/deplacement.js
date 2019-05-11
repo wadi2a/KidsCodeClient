@@ -4,6 +4,10 @@ import {TimelineMax} from "gsap";
 import BarreDeChoix2 from "../../components/BarreDeChoix2"
 import {tiles1} from "../../data/maps/2";
 
+import {asset, NativeModules} from 'react-360';
+const {AudioModule} = NativeModules;
+
+
 export default function handleDeplacement(voiture) {
     let pass = false
     let counter1 = 0;
@@ -130,6 +134,9 @@ export default function handleDeplacement(voiture) {
     function startEast(){
         intervalId3 = setInterval(_EAST, 100);
     }
+    function startNorth(){
+        intervalId3 = setInterval(_NORTH, 100);
+    }
     function getSpriteLocation(direction,depIndex) {
 
         switch(direction) {
@@ -245,8 +252,8 @@ let i =0
      }while (observeBoundaries(oldPos, newPos) && observeImpass(oldPos, newPos) && i<50)
 
     }
-    function resolveAfter2Seconds(x) {
-        return new Promise(resolve => {startWest();
+    function resolveAfter2Seconds1(x) {
+        return new Promise(resolve => {
             setTimeout(() => {
                 resolve(x);
 
@@ -254,30 +261,185 @@ let i =0
         });
     }
     function resolveAfter2Seconds2(x) {
-        return new Promise(resolve => {f2();
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(x);
+
+            }, 2502);
+        });
+    }
+    function resolveAfter2Seconds3(x) {
+        return new Promise(resolve => {
             setTimeout(() => {
                 resolve(x);
 
             }, 4000);
         });
     }
-    async function f2() {
-        let x = await resolveAfter2Seconds(10);
-        startSouth();
+    function resolveAfter2Seconds4(x) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(x);
+
+            }, 6000);
+        });
+    }
+    function resolveAfter2Seconds5(x) {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(x);
+
+            }, 10000);
+        });
+    }
+    async function f5(action) {
+        let x;
+        switch (action[action.length-5]) {
+            case "WEST" : x = await resolveAfter2Seconds1(startWest()); break ;
+            case "EAST" : x = await resolveAfter2Seconds1(startEast()); break ;
+            case "SOUTH" : x = await resolveAfter2Seconds1(startSouth()) ; break ;
+            case "NORTH" : x = await resolveAfter2Seconds1( startNorth()) ; break ;
+            default : console.log(action[action.length-1],"default tableau d'action derniere colonne")
+        }
+        switch (action[action.length-4]) {
+            case "WEST" :startWest() ; break ;
+            case "EAST" : startEast(); break ;
+            case "SOUTH" : startSouth() ; break ;
+            case "NORTH" : startNorth() ; break ;
+            default : console.log(action[action.length-1],"default tableau d'action derniere colonne")
+        }
+        console.log(x); // 10
+        }
+
+    async function f4(action) {
+        let x = await resolveAfter2Seconds2(f5(action));
+        switch (action[action.length-3]) {
+            case "WEST" :startWest() ; break ;
+            case "EAST" : startEast(); break ;
+            case "SOUTH" : startSouth() ; break ;
+            case "NORTH" : startNorth() ; break ;
+            default : console.log(action[action.length-1],"default tableau d'action derniere colonne")
+        }
         console.log(x); // 10
     }
-    async function f1() {
-        let x = await resolveAfter2Seconds2(10);
-        startEast();
+    async function f3(action) {
+        let x = await resolveAfter2Seconds3(f4(action));
+        switch (action[action.length-2]) {
+            case "WEST" :startWest() ; break ;
+            case "EAST" : startEast(); break ;
+            case "SOUTH" : startSouth() ; break ;
+            case "NORTH" : startNorth() ; break ;
+            default : console.log(action[action.length-1],"default tableau d'action derniere colonne")
+        }
+        console.log(x); // 10
+    }
+    async function f2(action) {
+        let x = await resolveAfter2Seconds4(f3(action));
+        switch (action[action.length-1]) {
+            case "WEST" :startWest() ; break ;
+            case "EAST" : startEast(); break ;
+            case "SOUTH" : startSouth() ; break ;
+            case "NORTH" : startNorth() ; break ;
+            default : console.log(action[action.length-1],"default tableau d'action derniere colonne")
+        }
+        console.log(x); // 10
+    }
+    async function f1(action) {
+
+        let x = await resolveAfter2Seconds5(f2(action));
+
+        AudioModule.playEnvironmental({
+            source: asset('../../assets/audio/voiture_audiosprite.mp3'),
+            volume: 0.3, // play at 3/10 original volume
+        });
+
+
+
+        let tl = new TimelineMax({repeat:1, repeatDelay:1});
+        if(!observeFin(store.getState().voiture.position,store.getState().voiture.position)){
+
+            tl.to(".animationFinbug",  1, {scale:0.0});
+            tl.to(".animationFinbug",  1, {scale:1, opacity:1});
+
+            tl.to(".animationFinbug",  1, {opacity:0});
+
+
+            let t2 = new TimelineMax();
+            t2.to(".animationFinbug",  1, {opacity:0});
+
+            sleep(2000)
+            if(store.getState().voiture.nbVie>=0){
+                store.dispatch({
+                    type : 'MOVE_VOITURE',
+                    payload:{
+
+                        position: store.getState().voiture.position,
+                        spriteLocation: store.getState().voiture.spriteLocation,
+                        direction:store.getState().voiture.direction,
+                        depIndex: 0,
+                        taskChoix : [],
+                        nbVie : store.getState().voiture.nbVie-1,
+                    }
+                })
+
+                let tl = new TimelineMax()
+                if     (store.getState().voiture.nbVie ==2)     tl.to("#coeur1",  1, {opacity:0})
+                if(store.getState().voiture.nbVie ==1)  tl.to("#coeur2",  1, {opacity:0})
+                if   (store.getState().voiture.nbVie ==0)  {tl.to("#coeur3",  1, {opacity:0})
+                    let t = new TimelineMax({repeat:2, repeatDelay:1});
+                    t.to(".gameOver",  1, {scale:0.0});
+                    tl.to(".gameOver",  1, {scale:1, opacity:1});
+                }
+            }else
+            {
+                store.dispatch({
+                    type : 'MOVE_VOITURE',
+                    payload:{
+
+                        position: store.getState().voiture.position,
+                        spriteLocation: store.getState().voiture.spriteLocation,
+                        direction:store.getState().voiture.direction,
+                        depIndex: 0,
+                        taskChoix : [],
+                        nbVie : 3,
+                    }
+                })
+
+
+
+            }
+
+
+        }else{
+
+
+                tl.to(".animationFin",  1, {scale:0.0});
+                tl.to(".animationFin",  1, {scale:1, opacity:1});
+
+                tl.to(".animationFin",  1, {opacity:0});
+
+
+                let t2 = new TimelineMax();
+                t2.to(".animationFin",  1, {opacity:0});
+
+
+
+        }
+
         console.log(x); // 10
     }
 
     function attemptManyMove() {
         let i = 0;
-        let tab = store.getState().voiture.taskChoix;
-
+        let tab = [] ;
+        store.getState().voiture.taskChoix.forEach((t)=>{
+            return tab.push(t.name);
+        });
+console.log(tab,"mon tab ");
       //  do {
-        f1()
+        //f1("WEST","SOUTH","EAST","SOUTH","WEST");
+        f1(tab);
+
             start();
 
 
@@ -350,62 +512,7 @@ let i =0
          return attemptManyMove( )
 
 
-            let tl = new TimelineMax({repeat:1, repeatDelay:1});
-            if(!observeFin(store.getState().voiture.position,store.getState().voiture.position)){
 
-                tl.to(".animationFinbug",  1, {scale:0.0});
-                tl.to(".animationFinbug",  1, {scale:1, opacity:1});
-
-                tl.to(".animationFinbug",  1, {opacity:0});
-
-
-                let t2 = new TimelineMax();
-                t2.to(".animationFinbug",  1, {opacity:0});
-
-                sleep(2000)
-                if(store.getState().voiture.nbVie>=0){
-                    store.dispatch({
-                        type : 'MOVE_VOITURE',
-                        payload:{
-
-                            position: store.getState().voiture.position,
-                            spriteLocation: '0px 160px',
-                            direction: 'WEST',
-                            depIndex: 0,
-                            taskChoix : [],
-                            nbVie : store.getState().voiture.nbVie-1,
-                        }
-                    })
-
-                    let tl = new TimelineMax()
-                    if     (store.getState().voiture.nbVie ==2)     tl.to("#coeur1",  1, {opacity:0})
-                    if(store.getState().voiture.nbVie ==1)  tl.to("#coeur2",  1, {opacity:0})
-                    if   (store.getState().voiture.nbVie ==0)  {tl.to("#coeur3",  1, {opacity:0})
-                        let t = new TimelineMax({repeat:2, repeatDelay:1});
-                        t.to(".gameOver",  1, {scale:0.0});
-                        tl.to(".gameOver",  1, {scale:1, opacity:1});
-                    }
-                }else
-                {
-                    store.dispatch({
-                        type : 'MOVE_VOITURE',
-                        payload:{
-
-                            position: [1120,160],
-                            spriteLocation: '0px 160px',
-                            direction: 'WEST',
-                            depIndex: 0,
-                            taskChoix : [],
-                            nbVie : 3,
-                        }
-                    })
-
-
-
-                }
-
-
-            }
         }else if (e.target["id"]==="Reinit"){
             if   (store.getState().voiture.nbVie >0) {
                 store.dispatch({
