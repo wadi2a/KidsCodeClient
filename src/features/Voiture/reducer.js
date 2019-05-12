@@ -5,6 +5,7 @@ const initialState = {
     depIndex: 0,
     taskChoix : [],
     nbVie : 3,
+    score:0,
 
 }
 

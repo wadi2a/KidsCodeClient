@@ -23,6 +23,95 @@ export default function handleDeplacement(voiture) {
     let intervalId3 = null;
     let counter = 10;
     let intervalId = null;
+    let counter3 = store.getState().voiture.score;
+    let intervalId5 = null;
+    let intervalId6 = null;
+    let fisrtCounter = counter3;
+    function finishP() {
+
+
+
+
+        clearInterval(intervalId5);
+        intervalId5=null;
+        store.dispatch({
+            type : 'MOVE_VOITURE',
+            payload:{
+
+                position: store.getState().voiture.position,
+                spriteLocation: store.getState().voiture.spriteLocation,
+                direction:store.getState().voiture.direction,
+                depIndex: store.getState().voiture.depIndex,
+                taskChoix : store.getState().voiture.taskChoix,
+                score:counter3-1,
+                nbVie : store.getState().voiture.nbVie,
+            }
+        })
+        counter3=store.getState().voiture.score;
+        document.getElementById("score").innerHTML = counter3 + "$";
+
+    }
+    function finishM() {
+
+
+
+
+        clearInterval(intervalId6);
+        intervalId6=null;
+
+        store.dispatch({
+            type : 'MOVE_VOITURE',
+            payload:{
+
+                position: store.getState().voiture.position,
+                spriteLocation: store.getState().voiture.spriteLocation,
+                direction:store.getState().voiture.direction,
+                depIndex: store.getState().voiture.depIndex,
+                taskChoix : store.getState().voiture.taskChoix,
+                score:counter3,
+                nbVie : store.getState().voiture.nbVie,
+            }
+        })
+        counter3=store.getState().voiture.score;
+        document.getElementById("score").innerHTML = counter3 + "$";
+
+    }
+    function bipPlus() {
+
+        console.log("score",store.getState().voiture.score,"gain",store.getState().map.gain,counter3 > store.getState().voiture.score+store.getState().map.gain)
+        counter3++;
+
+        if(counter3 > store.getState().voiture.score+store.getState().map.gain) {
+            finishP();
+            console.log("score",store.getState().voiture.score,"gain",store.getState().map.gain,counter3 > store.getState().voiture.score+store.getState().map.gain)
+
+        }
+        else {
+            document.getElementById("score").innerHTML = counter3 + "$";
+
+        }
+    }
+    function bipMoins() {
+
+        counter3--;
+console.log("score",store.getState().voiture.score,"gain",store.getState().map.gain)
+
+        if(counter3 <store.getState().voiture.score-store.getState().map.gain || counter3<=0) {
+            finishM();
+            console.log("score", store.getState().voiture.score, "gain", store.getState().map.gain, counter3 , store.getState().voiture.score- store.getState().map.gain)
+        }
+    else {
+            document.getElementById("score").innerHTML = counter3 + "$";
+        }
+    }
+    function plusScore(){
+        intervalId5 = setInterval(bipPlus, 100);
+
+    }
+    function moinScore(){
+        intervalId6 = setInterval(bipMoins, 100);
+    }
+
     function finish() {
         clearInterval(intervalId);
         document.getElementById("bip").innerHTML = "TERMINE!";
@@ -417,11 +506,13 @@ let i =0
                         direction:store.getState().voiture.direction,
                         depIndex: 0,
                         taskChoix : [],
+                        score:counter3,
                         nbVie : store.getState().voiture.nbVie-1,
                     }
                 })
                 accident.pause();
                 accident.currentTime=0;
+                moinScore();
                 let tl = new TimelineMax()
                 if     (store.getState().voiture.nbVie ==2)     tl.to("#coeur1",  1, {opacity:0})
                 if(store.getState().voiture.nbVie ==1)  tl.to("#coeur2",  1, {opacity:0})
@@ -443,6 +534,7 @@ let i =0
                         direction:store.getState().voiture.direction,
                         depIndex: 0,
                         taskChoix : [],
+                        score:counter3,
                         nbVie : 3,
                     }
                 })
@@ -456,7 +548,7 @@ let i =0
         }else{
 
             gagner.play();
-
+            plusScore();
 
                 tl.to(".animationFin",  1, {scale:0.0});
                 tl.to(".animationFin",  1, {scale:1, opacity:1});
@@ -524,6 +616,7 @@ console.log(tab,"mon tab ");
                 depIndex,
                 spriteLocation : getSpriteLocation(direction,depIndex),
                 taskChoix : store.getState().voiture.taskChoix,
+                score:store.getState().voiture.score,
                 nbVie : store.getState().voiture.nbVie,
 
             }
@@ -578,6 +671,7 @@ console.log(tab,"mon tab ");
                         direction: 'WEST',
                         depIndex: 0,
                         taskChoix: [],
+                        score:store.getState().voiture.score,
                         nbVie: store.getState().voiture.nbVie,
                     }
                 })
@@ -594,6 +688,7 @@ console.log(tab,"mon tab ");
                             direction: 'WEST',
                             depIndex: 0,
                             taskChoix: [],
+                            score:store.getState().voiture.score,
                             nbVie: 3,
                         }
                     })

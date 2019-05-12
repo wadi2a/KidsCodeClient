@@ -11,6 +11,8 @@ import BarreDeChoix2 from "../../components/BarreDeChoix2";
 function World(props) {
     store.dispatch({type : 'ADD_TILES',payload : {
         tiles,
+            scoreMin:store.getState().map.scoreMin,
+            gain:store.getState().map.gain,
         }})
 
 
