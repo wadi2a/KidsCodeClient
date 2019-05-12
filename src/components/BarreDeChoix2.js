@@ -3,7 +3,11 @@ import React, { Component } from 'react';
 import {dataBlock} from '../data/blocks'
 import Voiture from './Voiture';
 import store from "../config/store";
+import bip from '../assets/audio/beep-25.mp3';
 
+import bip2 from '../assets/audio/button-14.mp3';
+const sound = new Audio(bip);
+const sound2 = new Audio(bip2);
 export default class BarreDeChoix2 extends Component {
 
 
@@ -38,7 +42,9 @@ export default class BarreDeChoix2 extends Component {
 
     onClick = (ev, tas) => {
         console.log('dragstart:',tas);
+        sound2.volume = 1;
 
+        sound2.play();
 
         let blocks = this.state.tasks.filter((task) => {
             if (task.name !== tas) {
@@ -51,6 +57,18 @@ export default class BarreDeChoix2 extends Component {
         this.setState({tasks : blocks
 
         });
+        store.dispatch({
+            type : 'MOVE_VOITURE',
+            payload:{
+                position : store.getState().voiture.position,
+                direction :store.getState().voiture.direction,
+                depIndex:store.getState().voiture.depIndex,
+                spriteLocation : store.getState().voiture.spriteLocation,
+                taskChoix :blocks,
+                score:store.getState().voiture.score,
+                nbVie : store.getState().voiture.nbVie,
+            }
+        })
     }
 
 
@@ -59,6 +77,10 @@ export default class BarreDeChoix2 extends Component {
     }
 
     onDrop = (ev, cat) => {
+        sound.volume = 1;
+
+        sound.play();
+
         let block = ev.dataTransfer.getData("task");
 
         let blocks = this.state.choix.filter((task) => {
