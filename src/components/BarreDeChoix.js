@@ -18,9 +18,10 @@ export default class BarreDeChoix extends Component {
         ]
     }
 
-    onDragStart = (ev, task) => {
+    onDragStart = (ev, task,index) => {
         console.log('dragstart:',task);
         ev.dataTransfer.setData("task", task);
+        ev.dataTransfer.setData("index", index);
     }
 
 
@@ -35,7 +36,7 @@ export default class BarreDeChoix extends Component {
             tasks["wip"].push(
                 <div key={t.name}
 
-                     onDragStart = {(e) => this.onDragStart(e, t.name)}
+                     onDragStart = {(e) => this.onDragStart(e, t.name,i)}
                      draggable
                      className="draggable"
                      style = {{backgroundImage: t.bgcolor}}

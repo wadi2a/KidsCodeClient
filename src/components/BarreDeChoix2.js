@@ -39,10 +39,9 @@ export default class BarreDeChoix2 extends Component {
     onClick = (ev, tas) => {
         console.log('dragstart:',tas);
 
-let i = 0;
+
         let blocks = this.state.tasks.filter((task) => {
-            i++;
-            if (i !== tas) {
+            if (task.name !== tas) {
 
                 return task;
             }
@@ -106,11 +105,10 @@ let i = 0;
         })
         let i = 0;
         this.state.tasks.forEach ((t) => {
-            i++;
             tasks["complete"].push(
-                <div key={i}
+                <div key={t.name}
 
-                     onClick = {(e) => this.onClick(e, i)}
+                     onClick = {(e) => this.onClick(e, t.name)}
                      draggable
                      className="draggable"
                      style = {{backgroundImage: t.bgcolor}}
