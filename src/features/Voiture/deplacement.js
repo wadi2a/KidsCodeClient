@@ -96,7 +96,7 @@ export default function handleDeplacement(voiture) {
         counter3--;
 console.log("score",store.getState().voiture.score,"gain",store.getState().map.gain)
 
-        if(counter3 <store.getState().voiture.score-store.getState().map.gain || counter3<=0) {
+        if(counter3 <=store.getState().voiture.score-store.getState().map.gain || counter3<=0) {
             finishM();
             console.log("score", store.getState().voiture.score, "gain", store.getState().map.gain, counter3 , store.getState().voiture.score- store.getState().map.gain)
         }

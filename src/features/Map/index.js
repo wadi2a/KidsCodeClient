@@ -53,15 +53,17 @@ const tabMap=[tiles1,tiles2,tiles3,tiles4,tiles5,tiles6,tiles7,tiles8,tiles9,til
 
 
 function getMap(suiv) {
+
     if(suiv==1){
 
-        if(tabMap[index+1]!=null) {index++;return tabMap[index];}
-        else {index=0;return tabMap[0];}
+        if(tabMap[index+1]!=null && ((index+1) *10)<= store.getState().voiture.score) {console.log(1,"aa");index++;return tabMap[index];}
+        else {if(((index+1) *10)<=  store.getState().voiture.score ) {console.log(2,"aa");index=0;return tabMap[0];}}
 
     }else{
-        if(tabMap[index-1]!=null) {index--; return tabMap[index];}
-        else  {index=tabMap.length-1;return tabMap[tabMap.length-1];}
+        if(tabMap[index-1]!=null  && ((index-1) *10)<  store.getState().voiture.score ) {console.log(3,"aa");index--; return tabMap[index];}
+        else  { if(((index-1) *10)>   store.getState().voiture.score ) {index=tabMap.length-1;console.log(4,"aa");return tabMap[tabMap.length-1];}}
     }
+return null;
 
 }
 
@@ -86,6 +88,10 @@ function getTileSprite(type) {
     switch (type) {
         case 0 :
             return 'terre'
+        case 2 :
+            return 'fleure'
+        case 3 :
+            return 'loup'
         case 5 :
             return 'rock'
         case 6 :
@@ -127,11 +133,13 @@ function sleep(milliseconds) {
 }
 function mise() {
     let map = getMap(1);
+if (map!=null){
+
 
     store.dispatch({type : 'ADD_TILES',payload : {
             tiles:map,
-            scoreMin:store.getState().map.scoreMin,
-            gain:store.getState().map.gain,
+            scoreMin:(index+1) *10,
+            gain:(index+1)*10,
         }})
     store.dispatch({
         type : 'MOVE_VOITURE',
@@ -147,27 +155,32 @@ function mise() {
         }
     })
 }
+}
 function mise2() {
     let map = getMap(0);
+    if (map!=null) {
 
-    store.dispatch({type : 'ADD_TILES',payload : {
-            tiles:map,
-            scoreMin:store.getState().map.scoreMin,
-            gain:store.getState().map.gain,
-        }})
-    store.dispatch({
-        type : 'MOVE_VOITURE',
-        payload:{
+        store.dispatch({
+            type: 'ADD_TILES', payload: {
+                tiles: map,
+                scoreMin: (index + 1) * 10,
+                gain: (index + 1) * 10,
+            }
+        })
+        store.dispatch({
+            type: 'MOVE_VOITURE',
+            payload: {
 
-            position: [1120,160],
-            spriteLocation: '0px 160px',
-            direction: 'WEST',
-            depIndex: 0,
-            taskChoix : [],
-            score:store.getState().voiture.score,
-            nbVie : store.getState().voiture.nbVie,
-        }
-    })
+                position: [1120, 160],
+                spriteLocation: '0px 160px',
+                direction: 'WEST',
+                depIndex: 0,
+                taskChoix: [],
+                score: store.getState().voiture.score,
+                nbVie: store.getState().voiture.nbVie,
+            }
+        })
+    }
 }
 
 /*function dispatchEventt() {

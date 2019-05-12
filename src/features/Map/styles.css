@@ -17,6 +17,12 @@
 .tree {
     background-image : url('../../assets/images/tree.png')
 }
+.fleure {
+    background-image : url('../../assets/images/fleure.png')
+}
+.loup {
+    background-image : url('../../assets/images/loup.png')
+}
 .row{
     margin-top: -5px;
 }

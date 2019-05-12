@@ -1,7 +1,7 @@
 const initialState = {
     tiles : [],
-    scoreMin:0,
-    gain : 20,
+    scoreMin:10,
+    gain : 10,
 }
 
 const mapReducer = (state = initialState,action)=>{
