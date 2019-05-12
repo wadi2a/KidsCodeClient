@@ -20,6 +20,9 @@ import cle from "../../assets/images/clefOublier.png";
 import play from "../../assets/images/1rightarrow2.png";
 import stop from "../../assets/images/1rightarrowstop.png";
 import score from "../../assets/images/score.png";
+import crash from "../../assets/images/crash.png";
+import coins from "../../assets/images/coins.png";
+
 import {tiles1} from "../../data/maps/1";
 import {tiles2} from "../../data/maps/2";
 import {tiles3} from "../../data/maps/3";
@@ -154,6 +157,8 @@ if (map!=null){
             nbVie : store.getState().voiture.nbVie,
         }
     })
+    let t2 = new TimelineMax( );
+    t2.to(".crash",  1, {opacity:0});
 }
 }
 function mise2() {
@@ -180,7 +185,10 @@ function mise2() {
                 nbVie: store.getState().voiture.nbVie,
             }
         })
+        let t2 = new TimelineMax( );
+        t2.to(".crash",  1, {opacity:0});
     }
+
 }
 
 /*function dispatchEventt() {
@@ -215,7 +223,11 @@ function Map(props) {
 
             <img  alt="cle" className="cle" id="cle" style={{opacity:0,position : 'absolute',zIndex:0, top:'-112px',left:'26px', margin: '20px auto'}} src={cle}/>
         <button type="button" onClick={playStop.bind(this)}className="play" > <img alt="play" className="play" id="play" style={{opacity:1,position : 'absolute',zIndex:2, top:'-103px',right:'5px',  margin: '20px auto'}} src={play}/></button>
-            <div><img alt="score" className="score"  style={{opacity:1,position : 'absolute',zIndex:1, top:'6px',right:'-17px', width:'75px', margin: '20px auto'}} src={score}/><p style={{opacity:1,position : 'absolute',fontWeight:600,fontSize:'120%',zIndex:1, top:'32px',right:'-14px', width:'75px', margin: '20px auto'}}id="score">0</p></div>
+
+            <div><img alt="score" className="score"  style={{opacity:1,position : 'absolute',zIndex:1, top:'6px',right:'-17px', width:'75px', margin: '20px auto'}} src={score}/><p style={{opacity:1,position : 'absolute',fontWeight:600,fontSize:'120%',color:'yellow',zIndex:1, top:'32px',right:'-14px', width:'75px', margin: '20px auto'}}id="score">0</p></div>
+            <div><img alt="crash" className="crash"  style={{opacity:0,position : 'absolute',zIndex:1, top:'6px', width:'75px', margin: '20px auto'}} src={crash}/></div>
+            <div><img alt="coins" className="coins"  style={{opacity:0,position : 'absolute',zIndex:1, top:'1px',right:'-17px', width:'-17px', margin: '20px auto'}} src={coins}/></div>
+
             <div className="groupeCoeur">
                 <img   id="coeur4"  src={coeurBlack} alt="coeur1" />
                 <img   id="coeur5"  src={coeurBlack} alt="coeur2" />
@@ -230,8 +242,8 @@ function Map(props) {
             <img   className="gameOver"  src={gameOver} alt="gameOver" />
             <button  type="button"  style={{ width:'85px',height:'85px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'50%', color:'#555',position : 'absolute', top:'0px',left:'1049px', margin: '20px auto'}} > <img id="start" style={{width : '50px'}} src={start} alt="start" />             </button>
             <button type="button"  style={{ width:'85px',height:'85px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'50%', color:'#555',position : 'absolute', top:'0px',left:'122px', margin: '20px auto'}} ><img id="Reinit"  style={{width : '50px'}} src={reinit} alt="reinitialisation" /></button>
-            <button onClick={mise.bind(this)} type="button"  style={{ width:'80px',height:'35px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'00%', color:'#555',position : 'absolute', top:'90px',left:'1000px', margin: '20px auto'}} >map suivant</button>
-            <button onClick={mise2.bind(this)} type="button"  style={{ width:'80px',height:'35px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'00%', color:'#555',position : 'absolute', top:'90px',left:'122px', margin: '20px auto'}} >map precedent </button>
+            <button id="maps" onClick={mise.bind(this)} type="button"  style={{ width:'80px',height:'35px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'00%', color:'#555',position : 'absolute', top:'90px',left:'1000px', margin: '20px auto'}} >map suivant</button>
+            <button  id="mapp" onClick={mise2.bind(this)} type="button"  style={{ width:'80px',height:'35px', background:'#fafafa', boxShadow:'2px 2px 8px #aaa', font:'bold 13px Arial',borderRadius:'00%', color:'#555',position : 'absolute', top:'90px',left:'122px', margin: '20px auto'}} >map precedent </button>
 
 
             <img   className="animationFin"  src={logo} alt="Animation fin" />

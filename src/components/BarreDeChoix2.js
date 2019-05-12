@@ -99,7 +99,7 @@ export default class BarreDeChoix2 extends Component {
 
         }
         window.addEventListener('click',(e)=>{
-            if (e.target["id"]==="Reinit") {
+            if (e.target["id"]==="Reinit"|| e.target["id"]==="maps"||e.target["id"]==="mapp" ) {
                 this.reuinit()
             }
         })

@@ -84,7 +84,9 @@ export default function handleDeplacement(voiture) {
         if(counter3 > store.getState().voiture.score+store.getState().map.gain) {
             finishP();
             console.log("score",store.getState().voiture.score,"gain",store.getState().map.gain,counter3 > store.getState().voiture.score+store.getState().map.gain)
-
+            let tl = new TimelineMax();
+            tl.to(".coins", 1, {opacity: 1,top:8,right: -13});
+            tl.to(".coins", 1, {opacity: 0 });
         }
         else {
             document.getElementById("score").innerHTML = counter3 + "$";
@@ -485,14 +487,13 @@ let i =0
             accident.play();
 
 
-            tl.to(".animationFinbug",  1, {scale:0.0});
-            tl.to(".animationFinbug",  1, {scale:1, opacity:1});
 
-            tl.to(".animationFinbug",  1, {opacity:0});
+            tl.to(".crash",  1, {top:store.getState().voiture.position[1],left:store.getState().voiture.position[0]});
+            tl.to(".crash",  1, {opacity:1});
 
 
-            let t2 = new TimelineMax();
-            t2.to(".animationFinbug",  1, {opacity:0});
+
+
 
 
             sleep(3000)
@@ -513,6 +514,7 @@ let i =0
                 accident.pause();
                 accident.currentTime=0;
                 moinScore();
+
                 let tl = new TimelineMax()
                 if     (store.getState().voiture.nbVie ==2)     tl.to("#coeur1",  1, {opacity:0})
                 if(store.getState().voiture.nbVie ==1)  tl.to("#coeur2",  1, {opacity:0})
@@ -660,7 +662,7 @@ console.log(tab,"mon tab ");
 
 
 
-        }else if (e.target["id"]==="Reinit"){
+        }else if (e.target["id"]==="Reinit"|| e.target["id"]==="maps"||e.target["id"]==="mapp"){
             if   (store.getState().voiture.nbVie >0) {
                 store.dispatch({
                     type: 'MOVE_VOITURE',
@@ -701,6 +703,8 @@ console.log(tab,"mon tab ");
                 tl.to("#coeur3", 1, {opacity: 1})
             }
         }
+        let t2 = new TimelineMax( );
+        t2.to(".crash",  1, {opacity:0});
     }
 
     window.addEventListener('click',(e)=>{
