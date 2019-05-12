@@ -23,6 +23,7 @@ function World(props) {
                 margin: '20px auto',
             }}
         >    <BarreDeChoix  task={props.task}/>
+
              <BarreDeChoix2 sendData={props.sendData}  className="droppable2" nomDeTask="Ouadie" task={props.task}/>
 
              <Map/>

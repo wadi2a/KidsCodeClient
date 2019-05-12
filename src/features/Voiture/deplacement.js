@@ -156,16 +156,16 @@ export default function handleDeplacement(voiture) {
 
     }
     function startWest(){
-        intervalId1 = setInterval(_WEST, 150);
+        intervalId1 = setInterval(_WEST, 120);
     }
     function startSouth(){
-        intervalId2 = setInterval(_SOUTH, 150);
+        intervalId2 = setInterval(_SOUTH, 120);
     }
     function startEast(){
-        intervalId3 = setInterval(_EAST, 150);
+        intervalId3 = setInterval(_EAST, 120);
     }
     function startNorth(){
-        intervalId3 = setInterval(_NORTH, 150);
+        intervalId3 = setInterval(_NORTH, 120);
     }
     function getSpriteLocation(direction,depIndex) {
 
@@ -484,9 +484,13 @@ let i =0
 console.log(tab,"mon tab ");
       //  do {
         //f1("WEST","SOUTH","EAST","SOUTH","WEST");
-        f1(tab);
 
-            start();
+      if(tab[0]=="Start")  {f1(tab);}
+      else{animationCle();
+          start();
+      }
+
+
 
 
 
@@ -495,10 +499,14 @@ console.log(tab,"mon tab ");
         //    if(tab[i]==null) {console.log("jsuis nullé",tab[i],i);clearInterval(interval);}
       //  }while( tab[i]!=null)
     }
-    function  animation() {
-        let tl = new TimelineMax({repeat:2, repeatDelay:1});
-        tl.to(".Voit",  1, {scale:0.0});
-        tl.to(".Voit",  1, {scale:1, opacity:1});
+    function  animationCle() {
+        let tl = new TimelineMax({repeat:0, repeatDelay:2});
+        tl.to(".cle",  1, {opacity:0,zIndex:1});
+        tl.to(".cle",  1, {scale:1, opacity:1});
+        tl.to(".cle",  1, {scale:1, opacity:1});
+        tl.to(".cle",  1, {scale:1, opacity:1});
+
+        tl.to(".cle",  1, {opacity:0,zIndex:0});
     }
 
 

@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {dataBlock} from '../data/blocks'
 import Voiture from './Voiture';
 import store from "../config/store";
+
 export default class BarreDeChoix2 extends Component {
 
 

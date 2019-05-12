@@ -17,6 +17,7 @@ import {tiles1} from "../../data/maps/2";
 import {tiles2} from "../../data/maps/3";
 import VoitureSound from "../../assets/audio/voiture_audiosprite.mp3";
 import   jeux from '../../assets/audio/jeux.mp3';
+import cle from "../../assets/images/clefOublier.png";
 let sound;
 function getTileSprite(type) {
     switch (type) {
@@ -129,6 +130,8 @@ function Map(props) {
 
 
             }
+
+            <img  alt="cle" className="cle" id="cle" style={{opacity:0,position : 'absolute',zIndex:0, top:'-112px',left:'26px', margin: '20px auto'}} src={cle}/>
             <div className="groupeCoeur">
                 <img   id="coeur4"  src={coeurBlack} alt="coeur1" />
                 <img   id="coeur5"  src={coeurBlack} alt="coeur2" />
