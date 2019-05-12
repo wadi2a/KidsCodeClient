@@ -13,20 +13,57 @@ import ReactTestUtils from 'react-dom/test-utils'; // ES6
 
 import reinit from "../../assets/images/fleche-rond-png-3.png";
 import start from "../../assets/images/1rightarrow.png";
-import {tiles1} from "../../data/maps/2";
-import {tiles2} from "../../data/maps/3";
+
 import VoitureSound from "../../assets/audio/voiture_audiosprite.mp3";
 import   jeux from '../../assets/audio/jeux.mp3';
 import cle from "../../assets/images/clefOublier.png";
 import play from "../../assets/images/1rightarrow2.png";
 import stop from "../../assets/images/1rightarrowstop.png";
 import score from "../../assets/images/score.png";
+import {tiles1} from "../../data/maps/1";
+import {tiles2} from "../../data/maps/2";
+import {tiles3} from "../../data/maps/3";
+import {tiles4} from "../../data/maps/4";
+import {tiles5} from "../../data/maps/5";
+import {tiles6} from "../../data/maps/6";
+import {tiles7} from "../../data/maps/7";
+import {tiles8} from "../../data/maps/8";
+import {tiles9} from "../../data/maps/9";
+import {tiles10} from "../../data/maps/10";
+import {tiles11} from "../../data/maps/11";
+import {tiles12} from "../../data/maps/12";
+import {tiles13} from "../../data/maps/13";
+import {tiles14} from "../../data/maps/14";
+import {tiles15} from "../../data/maps/15";
+import {tiles16} from "../../data/maps/16";
+import {tiles17} from "../../data/maps/17";
+import {tiles18} from "../../data/maps/18";
+import {tiles19} from "../../data/maps/19";
+import {tiles20} from "../../data/maps/20";
+
 import {TimelineMax} from "gsap";
 let sound;
 let playPass=true;
 sound = new Audio(jeux);
 sound.volume = 0.1;
 sound.repeatDelay=true;
+let index = 0;
+
+const tabMap=[tiles1,tiles2,tiles3,tiles4,tiles5,tiles6,tiles7,tiles8,tiles9,tiles10,tiles11,tiles12,tiles13,tiles14,tiles15,tiles16,tiles17,tiles18,tiles19,tiles20]
+
+
+function getMap(suiv) {
+    if(suiv==1){
+
+        if(tabMap[index+1]!=null) {index++;return tabMap[index];}
+        else {index=0;return tabMap[0];}
+
+    }else{
+        if(tabMap[index-1]!=null) {index--; return tabMap[index];}
+        else  {index=tabMap.length-1;return tabMap[tabMap.length-1];}
+    }
+
+}
 
 function playStop() {
     if(playPass){
@@ -89,9 +126,10 @@ function sleep(milliseconds) {
     }
 }
 function mise() {
+    let map = getMap(1);
 
     store.dispatch({type : 'ADD_TILES',payload : {
-            tiles:tiles1,
+            tiles:map,
             scoreMin:store.getState().map.scoreMin,
             gain:store.getState().map.gain,
         }})
@@ -110,9 +148,10 @@ function mise() {
     })
 }
 function mise2() {
+    let map = getMap(0);
 
     store.dispatch({type : 'ADD_TILES',payload : {
-            tiles:tiles2,
+            tiles:map,
             scoreMin:store.getState().map.scoreMin,
             gain:store.getState().map.gain,
         }})
