@@ -202,7 +202,8 @@ function mise2() {
 
 
 function Map(props) {
-
+    let t2 = new TimelineMax( );
+    t2.to(".crash",  1, {opacity:0});
 
     sound.play();
     return(

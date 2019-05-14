@@ -25,6 +25,7 @@ export default function handleDeplacement(voiture) {
     let intervalId = null;
     let counter3 = store.getState().voiture.score;
     let intervalId5 = null;
+    let intervalId4 = null;
     let intervalId6 = null;
     let fisrtCounter = counter3;
     function finishP() {
@@ -132,6 +133,10 @@ console.log("score",store.getState().voiture.score,"gain",store.getState().map.g
         clearInterval(intervalId1);
         document.getElementById("bip1").innerHTML = "TERMINEW!";
     }
+    function finish4() {
+        clearInterval(intervalId4);
+        document.getElementById("bip1").innerHTML = "TERMINEN!";
+    }
     function finish2() {
         clearInterval(intervalId2);
         document.getElementById("bip1").innerHTML = "TERMINES!";
@@ -212,7 +217,7 @@ console.log("score",store.getState().voiture.score,"gain",store.getState().map.g
 
             console.log(observeBoundaries(oldPos, newPos), "JENSUISMA", observeImpass(oldPos, newPos))
             //if(observeFin(oldPos,newPos))
-                finish2()
+                finish4()
 
             pass = true
             //  tl.to(".Voit", 1, {left:newPos});
@@ -256,7 +261,7 @@ console.log("score",store.getState().voiture.score,"gain",store.getState().map.g
         intervalId3 = setInterval(_EAST, 120);
     }
     function startNorth(){
-        intervalId3 = setInterval(_NORTH, 120);
+        intervalId4 = setInterval(_NORTH, 120);
     }
     function getSpriteLocation(direction,depIndex) {
 
