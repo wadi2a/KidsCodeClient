@@ -36,10 +36,12 @@ export class Login extends React.Component {
         }
         API.login(this.state.email, this.state.password).then(function (data) {
             localStorage.setItem('token', data.data.token);
+            localStorage.setItem('user', data.data.user);
             window.location = "/dashboard"
         }, function (error ) {
 
             });
+
         localStorage.setItem('text', "pass ou user invalid");
         this.setState({
             ...this.state

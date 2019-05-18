@@ -8,6 +8,7 @@ import   VoitureAccident from '../../assets/audio/accident.mp3';
 import   VoitureGagner from '../../assets/audio/gagner.mp3';
 import   evil from '../../assets/audio/evil.mp3';
 import gameover from '../../assets/audio/Game-over-sound.mp3';
+import API from "../../utils/API";
 const sound = new Audio(VoitureSound);
 const  accident  = new Audio(VoitureAccident);
 const gagner = new Audio(VoitureGagner);
@@ -84,7 +85,10 @@ export default function handleDeplacement(voiture) {
 
         if(counter3 > store.getState().voiture.score+store.getState().map.gain) {
             finishP();
-            console.log("score",store.getState().voiture.score,"gain",store.getState().map.gain,counter3 > store.getState().voiture.score+store.getState().map.gain)
+
+            if(API.isAuth())API.addHistorique(localStorage.getItem('user')+"",counter3+"",1*store.getState().map.gain+"",(store.getState().map.gain+1)/10+"");
+
+            console.log(localStorage.getItem('user')+"",counter3+"",1*store.getState().map.gain+"",(store.getState().map.gain)/10)
             let tl = new TimelineMax();
             tl.to(".coins", 1, {opacity: 1,top:8,right: -13});
             tl.to(".coins", 1, {opacity: 0 });
@@ -101,6 +105,7 @@ console.log("score",store.getState().voiture.score,"gain",store.getState().map.g
 
         if(counter3 <=store.getState().voiture.score-store.getState().map.gain || counter3<=0) {
             finishM();
+            if(API.isAuth())API.addHistorique(API.getUser()+"",counter3+"",-1*store.getState().map.gain+"",(store.getState().map.gain)/10);
             console.log("score", store.getState().voiture.score, "gain", store.getState().map.gain, counter3 , store.getState().voiture.score- store.getState().map.gain)
         }
     else {
@@ -109,10 +114,10 @@ console.log("score",store.getState().voiture.score,"gain",store.getState().map.g
     }
     function plusScore(){
         intervalId5 = setInterval(bipPlus, 100);
-
-    }
+      }
     function moinScore(){
         intervalId6 = setInterval(bipMoins, 100);
+
     }
 
     function finish() {
@@ -570,6 +575,9 @@ let i =0
 
 
         }
+
+        console.log(localStorage.getItem('user'),store.getState().voiture.score,store.getState().map.gain,(store.getState().map.gain-1)/10)
+
 
         console.log(x); // 10
     }

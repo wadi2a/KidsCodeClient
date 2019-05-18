@@ -24,6 +24,10 @@ export default class NavBarAccueil extends Component {
 
         window.location = "/dashboard";
     }
+    stat = event => {
+
+        window.location = "/statistique";
+    }
 
     inscription= event => {
 
@@ -37,7 +41,7 @@ export default class NavBarAccueil extends Component {
                     <ul className = "nav navbar-nav" >
                         <li className = "active" > <a href = "#" > Home </a></li >
 
-                        <li> < a href = "#" > Statistiques </a></li >
+                        <li> < a onClick={this.stat} href = "#" > Statistiques </a></li >
                         <li> <a href = "#" > Profil </a></li>
                         <li> <a onClick={this.jeu} href = "#" > Jeu </a></li>
                         <li className="buttonTop"> <a href = "#" >   </a>  </li>
@@ -50,6 +54,8 @@ export default class NavBarAccueil extends Component {
                             Se déconnecter
                         </Button>
                         </li>
+                        <li className="bip">   <div id="bip"></div></li>
+                        <li className="bip1">   <div id="bip1"></div></li>
                     </ul>
                 </div>
             </nav>)}
@@ -62,7 +68,7 @@ export default class NavBarAccueil extends Component {
                             <ul className = "nav navbar-nav" >
                                 <li className = "active" > <a href = "#" > Home </a></li >
 
-                                <li> < a href = "#" > Statistiques </a></li >
+                                <li> < a onClick={this.stat} href = "#" > Statistiques </a></li >
                                 <li> <a href = "#" > Profil </a></li>
                                 <li> <a onClick={this.jeu} href = "#" > Jeu </a></li>
                                 <li className="buttonTop"> <a href = "#" >   </a>  </li>

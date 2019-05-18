@@ -21,7 +21,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Dashboard } from './Dashboard/Dashboard.js';
 import { Login } from './login/login.js';
 import { Signup } from './signup/signup.js';
-
+import { Statistique } from './statistique/statistique.js';
 
 
 
@@ -82,6 +82,7 @@ export default class fenetreJeu extends Component {
                     <Route exact path="/" component={Login}/>
                     <Route exact path ="/signup" component={Signup}/>
                     <Route path='/dashboard' component={Dashboard} />
+                    <Route path='/statistique' component={Statistique} />
                 </Switch>
 
             </div>
