@@ -86,7 +86,7 @@ export default function handleDeplacement(voiture) {
         if(counter3 > store.getState().voiture.score+store.getState().map.gain) {
             finishP();
 
-            if(API.isAuth())API.addHistorique(localStorage.getItem('user')+"",counter3+"",1*store.getState().map.gain+"",(store.getState().map.gain+1)/10+"");
+            if(API.isAuth())API.addHistorique(localStorage.getItem('user')+"",counter3+"",1*store.getState().map.gain+"",(store.getState().map.gain)/10+"");
 
             console.log(localStorage.getItem('user')+"",counter3+"",1*store.getState().map.gain+"",(store.getState().map.gain)/10)
             let tl = new TimelineMax();
