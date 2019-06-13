@@ -68,7 +68,7 @@ export default class NavBarAccueil extends Component {
                             <ul className = "nav navbar-nav" >
                                 <li className = "active" > <a href = "#" > Home </a></li >
 
-                                <li> < a onClick={this.stat} href = "#" > Statistiques </a></li >
+                                <li> <a onClick={this.stat} href = "#" > Statistiques </a></li >
                                 <li> <a href = "#" > Profil </a></li>
                                 <li> <a onClick={this.jeu} href = "#" > Jeu </a></li>
                                 <li className="buttonTop"> <a href = "#" >   </a>  </li>

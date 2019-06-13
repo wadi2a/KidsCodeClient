@@ -82,7 +82,7 @@ export default class fenetreJeu extends Component {
                     <Route exact path="/" component={Login}/>
                     <Route exact path ="/signup" component={Signup}/>
                     <Route path='/dashboard' component={Dashboard} />
-                    <Route path='/statistique' component={Statistique} />
+                    <Route exact path='/statistique' component={Statistique} />
                 </Switch>
 
             </div>

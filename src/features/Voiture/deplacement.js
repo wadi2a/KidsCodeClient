@@ -526,9 +526,10 @@ let i =0
                 moinScore();
 
                 let tl = new TimelineMax()
-                if     (store.getState().voiture.nbVie ==2)     tl.to("#coeur1",  1, {opacity:0})
-                if(store.getState().voiture.nbVie ==1)  tl.to("#coeur2",  1, {opacity:0})
-                if   (store.getState().voiture.nbVie ==0)  {tl.to("#coeur3",  1, {opacity:0})
+                if     (store.getState().voiture.nbVie ==3)     tl.to("#coeur1",  1, {opacity:0})
+                if(store.getState().voiture.nbVie ==2)  tl.to("#coeur2",  1, {opacity:0})
+                if(store.getState().voiture.nbVie ==1)  tl.to("#coeur3",  1, {opacity:0})
+                if   (store.getState().voiture.nbVie ==0)  {tl.to("#coeur4",  1, {opacity:0})
                     gameoverSound.play();
                     let t = new TimelineMax({repeat:2, repeatDelay:1});
                     t.to(".gameOver",  1, {scale:0.0});
@@ -714,6 +715,7 @@ console.log(tab,"mon tab ");
                 tl.to("#coeur1", 1, {opacity: 1})
                 tl.to("#coeur2", 1, {opacity: 1})
                 tl.to("#coeur3", 1, {opacity: 1})
+                tl.to("#coeur4", 1, {opacity: 1})
             }
         }
         let t2 = new TimelineMax( );
