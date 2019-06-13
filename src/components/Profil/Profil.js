@@ -13,6 +13,10 @@ export class Profil extends React.Component {
             email: "",
             password: "",
             sex:"",
+            nom:"",
+            age:"",
+            prenom:"",
+
         }
         this.handleChange.bind(this);
         //this.send.bind(this);
@@ -75,6 +79,21 @@ export class Profil extends React.Component {
                     <FormLabel>Sex</FormLabel>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <FormControl id = "sex" type="text" value={this.state.sex} onChange={this.handleChange}/>
                  </FormGroup>
+                 <FormGroup controlId="Nom" bsSize="large">
+                    <FormLabel>Nom</FormLabel>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <FormControl id = "nom" type="Nom" value={this.state.Nom} onChange={this.handleChange}/>
+                 </FormGroup>
+
+                 <FormGroup controlId="Prénom" bsSize="large">
+                    <FormLabel>Prénom</FormLabel>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <FormControl id="prenom" type="Prénom" value={this.state.Prénom} onChange={this.handleChange}/>
+                 </FormGroup>
+
+                 <FormGroup controlId="Age" bsSize="large">
+                    <FormLabel>Age</FormLabel>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <FormControl autoFocus type="Age" value={this.state.Age} onChange={this.handleChange}/>
+                 </FormGroup>
+
 
                 <FormGroup controlId="email" bsSize="large" >
                     <FormLabel>Email</FormLabel>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
