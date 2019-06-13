@@ -1,9 +1,11 @@
 import React from 'react';
-import { Button, FormGroup, FormLabel,FormControl } from "react-bootstrap";
+import { Button, FormGroup, FormLabel,FormControl, Dropdown } from "react-bootstrap";
 import API from '../../utils/API';
 import '../../assets/css/index.css';
 import classNames from 'classnames';
-
+import {DropdownList} from "react-widgets";
+import "bootstrap/dist/css/bootstrap.min.css";
+import 'react-widgets/dist/css/react-widgets.css';
 
 import logo from "../../assets/images/animationFin.png";
 export class Profil extends React.Component {
@@ -12,7 +14,7 @@ export class Profil extends React.Component {
         this.state = {
             email: "",
             password: "",
-            sex:"",
+            sex:"Homme",
             nom:"",
             age:"",
             prenom:"",
@@ -74,11 +76,15 @@ export class Profil extends React.Component {
             <div className="Profil">
             <FormLabel className="titleProfil"> Profil</FormLabel>
 
-
-            <FormGroup controlId = "Sex" bsSize="large">
-                    <FormLabel>Sex</FormLabel>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <FormControl id = "sex" type="text" value={this.state.sex} onChange={this.handleChange}/>
+                 <FormGroup controlId = "Sex" bsSize="large">
+                 <FormLabel>sex</FormLabel>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <DropdownList
+                data={["Homme","Femme", "Indéterminé"]}
+                value = {this.state.sex}
+                onChange = {(value) => this.setState({sex:value})}
+                />
                  </FormGroup>
+
                  <FormGroup controlId="Nom" bsSize="large">
                     <FormLabel>Nom</FormLabel>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <FormControl id = "nom" type="Nom" value={this.state.Nom} onChange={this.handleChange}/>

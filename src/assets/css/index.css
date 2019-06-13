@@ -76,3 +76,15 @@ div[class*="Profil"]>div[class*="form-group"]{
     display: flex;
     
 }
+
+.rw-widget{
+    width:100%;
+}
+
+.rw-dropdown-list-input{
+    text-align:left;
+}
+
+.rw-list-option{
+    text-align:left;
+}
