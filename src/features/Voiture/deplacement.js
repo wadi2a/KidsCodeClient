@@ -650,7 +650,7 @@ console.log(tab,"mon tab ");
 
 
     }
-   function handleKeyDown(e){
+ /*  function handleKeyDown(e){
         e.preventDefault()
        console.log("event",e)
         switch (e.keyCode) {
@@ -666,6 +666,7 @@ console.log(tab,"mon tab ");
                 console.log(e.keyCode)
         }
     }
+*/
     function handleDeplacement(e){
         e.preventDefault()
 
@@ -723,8 +724,9 @@ console.log(tab,"mon tab ");
     window.addEventListener('click',(e)=>{
         handleDeplacement(e)
     })
-    window.addEventListener('keydown',(e)=>{
+    /*window.addEventListener('keydown',(e)=>{
         handleKeyDown(e)
     })
+    */
     return voiture
 }
