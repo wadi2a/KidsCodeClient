@@ -44,10 +44,10 @@ export class Profil extends React.Component {
         API.Profil(this.state.email, this.state.password, this.state.Age, this.state.Nom, this.state.Sex, this.state.Prénom).then(function (data) {
             localStorage.setItem('token', data.data.token);
             localStorage.setItem('user', data.data.user);
-            localStorage.setItem('user', data.data.user.Nom);
-            localStorage.setItem('user', data.data.user.Prénom);
-            localStorage.setItem('user', data.data.user.Sex);
-            localStorage.setItem('user', data.data.user.Age);
+            localStorage.setItem('nom', data.data.user.Nom);
+            localStorage.setItem('prenom', data.data.user.Prénom);
+            localStorage.setItem('sex', data.data.user.Sex);
+            localStorage.setItem('age', data.data.user.Age);
             window.location = "/dashboard"
         }, function (error ) {
 
