@@ -12,14 +12,14 @@ export default {
             headers: headers
         })
     }, 
-    profil : function(email, password,Age, Nom, Sex, Prénom){
-        return axios.post(burl + '/user/Profil',{
+    profil : function(email, password,Age, Nom, Sex, prenom){
+        return axios.post(burl + '/user/Profil/miseajour',{
             'email' : email,
             'password' : password,
             'sex' : Sex,
             'age' : Age,
             'nom' : Nom,
-            'prénom' : Prénom
+            'prenom' : prenom
         },{
              headers: headers
         })
