@@ -22,6 +22,7 @@ import { Dashboard } from './Dashboard/Dashboard.js';
 import { Login } from './login/login.js';
 import { Signup } from './signup/signup.js';
 import { Statistique } from './statistique/statistique.js';
+import {Profil} from './Profil/Profil.js';
 
 
 
@@ -82,7 +83,12 @@ export default class fenetreJeu extends Component {
                     <Route exact path="/" component={Login}/>
                     <Route exact path ="/signup" component={Signup}/>
                     <Route path='/dashboard' component={Dashboard} />
+
                     <Route exact path='/statistique' component={Statistique} />
+
+                    <Route path='/statistique' component={Statistique} />
+                    <Route path='/profil' component={Profil} />
+
                 </Switch>
 
             </div>
