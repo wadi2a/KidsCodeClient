@@ -11,7 +11,19 @@ export default {
         },{
             headers: headers
         })
-    },
+    }, 
+    profil : function(email, password,Age, Nom, Sex, Prénom){
+        return axios.post(burl + '/user/Profil',{
+            'email' : email,
+            'password' : password,
+            'sex' : Sex,
+            'age' : Age,
+            'nom' : Nom,
+            'prénom' : Prénom
+        },{
+             headers: headers
+        })
+},
     addHistorique : function(user,score,gain,map) {
 
         let date = new Date().getDate(); //Current Date

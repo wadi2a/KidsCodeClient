@@ -33,6 +33,9 @@ export default class NavBarAccueil extends Component {
 
         window.location = "/signup";
     }
+    profil = event => {
+        window.location = "/profil";
+    }
     buttonConnect = test => {
         if (test == true){
             return (        <nav className="navbar navbar-default">
@@ -42,7 +45,7 @@ export default class NavBarAccueil extends Component {
                         <li className = "active" > <a href = "#" > Home </a></li >
 
                         <li> < a onClick={this.stat} href = "#" > Statistiques </a></li >
-                        <li> <a href = "#" > Profil </a></li>
+                        <li> <a onClick={this.profil} href = "#" > Profil </a></li>
                         <li> <a onClick={this.jeu} href = "#" > Jeu </a></li>
                         <li className="buttonTop"> <a href = "#" >   </a>  </li>
                         <li className="buttonTop">         <Button className="buttonTop1"
@@ -68,8 +71,13 @@ export default class NavBarAccueil extends Component {
                             <ul className = "nav navbar-nav" >
                                 <li className = "active" > <a href = "#" > Home </a></li >
 
+<<<<<<< HEAD
                                 <li> <a onClick={this.stat} href = "#" > Statistiques </a></li >
                                 <li> <a href = "#" > Profil </a></li>
+=======
+                                <li> < a onClick={this.stat} href = "#" > Statistiques </a></li >
+                                <li> <a onClick={this.profil} href = "#" > Profil </a></li>
+>>>>>>> 4281b76eb291be40aaaba7d591b580e18794bb53
                                 <li> <a onClick={this.jeu} href = "#" > Jeu </a></li>
                                 <li className="buttonTop"> <a href = "#" >   </a>  </li>
 

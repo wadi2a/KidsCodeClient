@@ -5,7 +5,6 @@ body {
 }
 .Login {
   width: 40%;
-
   max-width: 600px;
   margin: auto;
 background-color: slategray;
@@ -13,11 +12,29 @@ background-color: slategray;
     border-radius: 20px;
 
 }
+.ProfilBack{
+
+    padding: 100px;
+        height: 600px;
+        width: 100%;
+        background-image: url("../images/image\ fd\ ecran.png   ");
+    }
+
+.Profil{
+    width: 80%;
+    margin: 20px 0px;
+    max-width: 600px;
+    margin: auto;
+  background-color: slategray;
+      padding: 40px;
+      border-radius: 30px;
+  
+  }
 .LoginBack{
 
 padding: 100px;
     height: 600px;
-    wwidth: 100%;
+    width: 100%;
     background-image: url("../images/backg2.png");
 }
 .trendWrapper {
@@ -28,8 +45,11 @@ padding: 100px;
     height: 150px;
     width: 750px;
 }
-
-
+.titleProfil {
+    font-size: x-large;
+    position: relative;
+    top: -10px;
+}
 .logo{
 width: 80px;
     height: 50px;
@@ -47,4 +67,24 @@ width: 80px;
 }
 .erreur{
     color: red;
+}
+/*selecteur form group qui sont dans profil */
+
+div[class*="Profil"]>div[class*="form-group"]{
+
+    flex-direction: row;
+    display: flex;
+    
+}
+
+.rw-widget{
+    width:100%;
+}
+
+.rw-dropdown-list-input{
+    text-align:left;
+}
+
+.rw-list-option{
+    text-align:left;
 }
