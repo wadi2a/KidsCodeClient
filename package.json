@@ -6,7 +6,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^3.4.1",
     "es6-sleep": "^2.0.2",
-    "gsap": "^2.1.0",
+    "gsap": "^3.6.0",
     "preact": "^8.4.2",
     "preact-charts": "^1.0.1",
     "pubsub": "^3.2.1",
